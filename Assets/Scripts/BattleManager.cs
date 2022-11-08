@@ -19,11 +19,6 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         PokemonTeam = go.GetComponent<SelectPokemon>().PokemonTeam;
-        
-        
-            Pokemon1 = GameObject.Find(PokemonTeam[0]);
-        Destroy(Pokemon1.GetComponent<RotateMe>());
-        Pokemon1.transform.position = yourTeam;
 
     }
 
