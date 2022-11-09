@@ -9,15 +9,32 @@ public class WingAttack : MonoBehaviour
     int accuracy = 100;
     GameManager.Type type = GameManager.Type.FLYING;
 
-    // Start is called before the first frame update
-    void Start()
+    public string display()
     {
-        
+        return " Wing Attack \n" +
+            " Uses: " + uses + "\n\n" +
+            " Power: " + power + "\n" +
+            " Accuracy: " + accuracy + "\n" +
+            " Type: " + type;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int getPower()
     {
-        
+        return power;
+    }
+
+    public int getAccuracy()
+    {
+        return accuracy;
+    }
+
+    public int getUses()
+    {
+        return uses;
+    }
+
+    public GameManager.Type getType()
+    {
+        return type;
     }
 }

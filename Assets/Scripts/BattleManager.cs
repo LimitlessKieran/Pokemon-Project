@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -15,14 +16,9 @@ public class BattleManager : MonoBehaviour
     Vector3 oppTeam = new Vector3(25.4567f, 0.15f, 33.15f);
     Vector3 away = new Vector3(25.4567f, 0.15f, 33.15f);
 
-    public GameObject currentPlayerPokemon;
-    public GameObject currentOpponentPokemon;
-
     // Start is called before the first frame update
     void Start()
     {
-        currentPlayerPokemon = GameObject.Find("Charizard");
-        currentOpponentPokemon = GameObject.Find("Aerodactyl");
         /*
         for (int i = 0; i < Instance.PokemonTeam.Count-1; i++)
         {
@@ -38,7 +34,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-
+       
     }
 
     private void Awake()
