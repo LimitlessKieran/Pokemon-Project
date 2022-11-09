@@ -49,9 +49,4 @@ public class BattleManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void attack()
-    {
-
-    }
 }
