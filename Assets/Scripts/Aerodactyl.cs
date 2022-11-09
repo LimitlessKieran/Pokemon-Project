@@ -8,6 +8,11 @@ public class Aerodactyl : MonoBehaviour
     public int attack;
     public int defense;
 
+    public string move1 = "";
+    public string move2 = "";
+    public string move3 = "";
+    public string move4 = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +21,13 @@ public class Aerodactyl : MonoBehaviour
         defense = 100;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int getHealth()
     {
+        return health;
+    }
 
+    public void setHealth(int newHealth)
+    {
+        health = newHealth;
     }
 }

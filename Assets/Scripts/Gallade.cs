@@ -8,6 +8,11 @@ public class Gallade : MonoBehaviour
     public int attack;
     public int defense;
 
+    public string move1 = "";
+    public string move2 = "";
+    public string move3 = "";
+    public string move4 = "";
+
     // Start is called before the first frame update
     void Start()
     {
