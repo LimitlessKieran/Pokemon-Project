@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.009732296, g: 0.015748437, b: 0.013133638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,6 +128,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 389a7d418690a472796b26abd0a4ce07, type: 3}
@@ -195,6 +196,7 @@ PrefabInstance:
       value: StadiumFloor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 389a7d418690a472796b26abd0a4ce07, type: 3}
 --- !u!1 &338481785
 GameObject:
@@ -295,6 +297,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b11937adf453e74196542326a797348, type: 3}
@@ -358,12 +361,14 @@ PrefabInstance:
       value: Sceptile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b11937adf453e74196542326a797348, type: 3}
 --- !u!1001 &1416513969
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0a657ee857e514f4a856e707aba9044c, type: 3}
@@ -427,12 +432,14 @@ PrefabInstance:
       value: Stadium
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a657ee857e514f4a856e707aba9044c, type: 3}
 --- !u!1001 &1582325708
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
@@ -496,6 +503,7 @@ PrefabInstance:
       value: Charizard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
 --- !u!1 &2048735065
 GameObject:
