@@ -6,15 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public enum Type { GRASS, WATER, FIRE, ELECTRIC, FLYING, FIGHTING, NORMAL };
-    public List<string> PokemonTeam = new List<string>();
-    public static GameManager Instance;
+    public List<string> PokemonTeam = new List<string>(){ "1", "2", "3" };
+    public static GameManager gameManagerInstance;
     public GameObject go;
 
     void Start()
     {
 
-        
-        
+       
     }
 
     // Update is called once per frame
@@ -45,8 +44,8 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void GetPokemonTeam()
+    public List<string> GetPokemonTeam()
     {
-        PokemonTeam = go.GetComponent<SelectPokemon>().PokemonTeam;
+        return PokemonTeam;
     }
 }
