@@ -33,11 +33,20 @@ public class BattleUI : MonoBehaviour
     public TMP_Text attackButtonText3;
     public TMP_Text attackButtonText4;
 
+    public TMP_Text playerPokemonName;
+    public TMP_Text opponentPokemonName;
+
     // Start is called before the first frame update
     void Start()
     {
         currentPlayerPokemon = GameObject.Find("Charizard");
         currentOpponentPokemon = GameObject.Find("Aerodactyl");
+
+        playerPokemonName = GameObject.Find("PokemonName").GetComponent<TMP_Text>();
+        playerPokemonName.SetText("Charizard");
+
+        opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
+        opponentPokemonName.SetText("Aerodactyl");
 
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
         opponentHealthBar = GameObject.Find("OpponentHealthBar").GetComponent<HealthBar>();
