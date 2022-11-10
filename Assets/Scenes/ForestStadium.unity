@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.024317957, g: 0.06506007, b: 0.090756595, a: 0.1}
+  m_IndirectSpecularColor: {r: 0.024320278, g: 0.0650905, b: 0.09081077, a: 0.1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6542,6 +6542,7 @@ GameObject:
   - component: {fileID: 1743564896}
   - component: {fileID: 1743564895}
   - component: {fileID: 1743564897}
+  - component: {fileID: 1743564898}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6606,6 +6607,20 @@ MonoBehaviour:
   attackButtonText4: {fileID: 0}
   playerPokemonName: {fileID: 0}
   opponentPokemonName: {fileID: 0}
+--- !u!114 &1743564898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743564894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebadd91443203dc409a0b23c44647f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam1: {fileID: 963194227}
+  cam2: {fileID: 238387846}
 --- !u!1001 &1755235551
 PrefabInstance:
   m_ObjectHideFlags: 0
