@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Aerodactyl : MonoBehaviour
 {
-    public int health;
-    public int attack;
-    public int defense;
+    int health;
+    int attack;
+    int defense;
 
-    public string move1 = "";
-    public string move2 = "";
-    public string move3 = "";
-    public string move4 = "";
+    string move1 = "AerialAce";
+    string move2 = "Pursuit";
+    string move3 = "RockTomb";
+    string move4 = "SkyDrop";
 
     // Start is called before the first frame update
     void Start()
     {
         health = 200;
         attack = 100;
-        defense = 100;
+        defense = 175;
     }
 
     public int getHealth()
@@ -29,5 +29,35 @@ public class Aerodactyl : MonoBehaviour
     public void setHealth(int newHealth)
     {
         health = newHealth;
+    }
+
+    public int getAttack()
+    {
+        return attack;
+    }
+
+    public int getDefense()
+    {
+        return defense;
+    }
+
+    public string getMove1()
+    {
+        return move1;
+    }
+
+    public string getMove2()
+    {
+        return move2;
+    }
+
+    public string getMove3()
+    {
+        return move3;
+    }
+
+    public string getMove4()
+    {
+        return move4;
     }
 }

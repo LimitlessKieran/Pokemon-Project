@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Charizard : MonoBehaviour
 {
-    public int health;
-    public int attack;
-    public int defense;
+    int health;
+    int attack;
+    int defense;
 
-    public static string move1 = "Flamethrower";
-    string move2 = "Wing Attack";
+    string move1 = "Flamethrower";
+    string move2 = "WingAttack";
     string move3 = "Bite";
-    string move4 = "Fire Blast";
+    string move4 = "FireBlast";
+
+    GameManager.Type type = GameManager.Type.FIRE;
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +23,24 @@ public class Charizard : MonoBehaviour
         defense = 100;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int getHealth()
     {
+        return health;
+    }
 
+    public void setHealth(int newHealth)
+    {
+        health = newHealth;
+    }
+
+    public int getAttack()
+    {
+        return attack;
+    }
+
+    public int getDefense()
+    {
+        return defense;
     }
 
     public string getMove1()
@@ -45,5 +61,10 @@ public class Charizard : MonoBehaviour
     public string getMove4()
     {
         return move4;
+    }
+
+    public GameManager.Type getType()
+    {
+        return type;
     }
 }

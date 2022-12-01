@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public List<string> PokemonTeam = new List<string>(){ "1", "2", "3" };
     public static GameManager gameManagerInstance;
     public GameObject go;
+    public GameManager Instance;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
- /* private void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-    }*/
+    }
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

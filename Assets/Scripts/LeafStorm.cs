@@ -9,15 +9,37 @@ public class LeafStorm : MonoBehaviour
     int accuracy = 85;
     GameManager.Type type = GameManager.Type.GRASS;
 
-    // Start is called before the first frame update
-    void Start()
+    public string display()
     {
-        
+        return " Leaf Storm \n" +
+            " Uses: " + uses + "\n\n" +
+            " Power: " + power + "\n" +
+            " Accuracy: " + accuracy + "\n" +
+            " Type: " + type;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int getPower()
     {
-        
+        return power;
+    }
+
+    public int getAccuracy()
+    {
+        return accuracy;
+    }
+
+    public int getUses()
+    {
+        return uses;
+    }
+
+    public void setUses(int n)
+    {
+        uses = n;
+    }
+
+    public GameManager.Type getType()
+    {
+        return type;
     }
 }

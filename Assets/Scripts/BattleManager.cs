@@ -9,7 +9,7 @@ public class BattleManager : MonoBehaviour
     public GameObject Pokemon1;
     public GameObject Pokemon2;
     public GameObject Pokemon3;
-    public List<string> PokemonTeam = new List<string>() { "1", "2", "3" };
+    public List<string> PokemonTeam = new List<string>() { "Charizard", "2", "3" };
     public static BattleManager Instance;
 
     Vector3 yourTeam = new Vector3(42.59f, .009f, 44.98f); //6868628
@@ -24,10 +24,10 @@ public class BattleManager : MonoBehaviour
         {
             PokemonTeam[i] = Instance.PokemonTeam[i];
         }
-
+        
         Pokemon1 = GameObject.Find(PokemonTeam[0]);
         Destroy(Pokemon1.GetComponent<RotateMe>());
-        Pokemon1.transform.position = yourTeam;
+        Pokemon1.transform.position = yourTeam;  
         */
     }
 

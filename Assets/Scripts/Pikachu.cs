@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Pikachu : MonoBehaviour
 {
-    public int health;
-    public int attack;
-    public int defense;
+    int health;
+    int attack;
+    int defense;
 
-    public string move1 = "";
-    public string move2 = "";
-    public string move3 = "";
-    public string move4 = "";
+    string move1 = "Thunderbolt";
+    string move2 = "IronTail";
+    string move3 = "QuickAttack";
+    string move4 = "Thunder";
 
     // Start is called before the first frame update
     void Start()

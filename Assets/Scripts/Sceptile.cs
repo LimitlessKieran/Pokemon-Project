@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Sceptile : MonoBehaviour
 {
-    public int health;
-    public int attack;
-    public int defense;
+    int health;
+    int attack;
+    int defense;
 
-    public string move1 = "";
-    public string move2 = "";
-    public string move3 = "";
-    public string move4 = "";
+    string move1 = "LeafBlade";
+    string move2 = "Slash";
+    string move3 = "XScissor";
+    string move4 = "LeafStorm";
 
     // Start is called before the first frame update
     void Start()

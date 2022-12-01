@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Gallade : MonoBehaviour
 {
-    public int health;
-    public int attack;
-    public int defense;
+    int health;
+    int attack;
+    int defense;
 
-    public string move1 = "";
-    public string move2 = "";
-    public string move3 = "";
-    public string move4 = "";
+    string move1 = "BrickBreak";
+    string move2 = "RockSmash";
+    string move3 = "FalseSwipe";
+    string move4 = "CloseCombat";
 
     // Start is called before the first frame update
     void Start()

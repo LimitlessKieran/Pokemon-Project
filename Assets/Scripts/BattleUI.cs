@@ -9,32 +9,32 @@ public class BattleUI : MonoBehaviour
     GameObject itemPanel;
     GameObject partyPanel;
 
-    public HealthBar playerHealthBar;
-    public HealthBar opponentHealthBar;
+    HealthBar playerHealthBar;
+    HealthBar opponentHealthBar;
 
-    public int currentPlayerHealth;
-    public int currentOpponentHealth;
+    int currentPlayerHealth;
+    int currentOpponentHealth;
 
-    public GameObject currentPlayerPokemon;
-    public GameObject currentOpponentPokemon;
-
-    public GameObject attackButton1;
-    public GameObject attackButton2;
-    public GameObject attackButton3;
-    public GameObject attackButton4;
+    GameObject currentPlayerPokemon;
+    GameObject currentOpponentPokemon;
+    
+    GameObject attackButton1;
+    GameObject attackButton2;
+    GameObject attackButton3;
+    GameObject attackButton4;
 
     string move1;
     string move2;
     string move3;
     string move4;
 
-    public TMP_Text attackButtonText1;
-    public TMP_Text attackButtonText2;
-    public TMP_Text attackButtonText3;
-    public TMP_Text attackButtonText4;
+    TMP_Text attackButtonText1;
+    TMP_Text attackButtonText2;
+    TMP_Text attackButtonText3;
+    TMP_Text attackButtonText4;
 
-    public TMP_Text playerPokemonName;
-    public TMP_Text opponentPokemonName;
+    TMP_Text playerPokemonName;
+    TMP_Text opponentPokemonName;
 
     // Start is called before the first frame update
     void Start()
@@ -157,8 +157,30 @@ public class BattleUI : MonoBehaviour
 
     public void useMove()
     {
-        currentOpponentPokemon.GetComponent<Aerodactyl>().setHealth(currentOpponentPokemon.GetComponent<Aerodactyl>().getHealth() - 40);
-        opponentHealthBar.setHealth(currentOpponentHealth - 40);
-        currentOpponentHealth -= 40;
+        int movePower = currentPlayerPokemon.GetComponent<Flamethrower>().getPower();
+        int pokemonDamage = currentPlayerPokemon.GetComponent<Charizard>().getAttack();
+        int opposingDefense = currentOpponentPokemon.GetComponent<Aerodactyl>().getDefense();        
+
+        int damage = movePower + pokemonDamage - opposingDefense;
+
+        currentOpponentPokemon.GetComponent<Aerodactyl>().setHealth(currentOpponentPokemon.GetComponent<Aerodactyl>().getHealth() - damage);
+        opponentHealthBar.setHealth(currentOpponentHealth - damage);
+        currentOpponentHealth -= damage;
+
+        attackPanel.gameObject.SetActive(false);
+    }
+
+    public void useItem()
+    {
+
+
+        itemPanel.gameObject.SetActive(false);
+    }
+
+    public void swapPokemon()
+    {
+
+
+        partyPanel.gameObject.SetActive(false);
     }
 }
