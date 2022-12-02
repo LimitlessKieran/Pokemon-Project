@@ -14,8 +14,8 @@ public class BattleManager : MonoBehaviour
     Vector3 oppTeam = new Vector3(25.4567f, 0.15f, 33.15f);
     Vector3 away = new Vector3(25.4567f, 0.15f, 33.15f);
 
-    public List<string> battleTeam = new List<string>();
-    public List<string> opponentTeam = new List<string>();
+    public static List<string> battleTeam = new List<string>();
+    public static List<string> opponentTeam = new List<string>();
     public List<string> allPokemon = new List<string>();
 
 

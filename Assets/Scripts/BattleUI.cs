@@ -53,13 +53,13 @@ public class BattleUI : MonoBehaviour
     void Start()
     {
         currentPlayerPokemon = GameObject.Find(BattleManager.battleTeam[0]);
-        currentOpponentPokemon = GameObject.Find("Aerodactyl");
+        currentOpponentPokemon = GameObject.Find(BattleManager.opponentTeam[0]);
 
         playerPokemonName = GameObject.Find("PokemonName").GetComponent<TMP_Text>();
         playerPokemonName.SetText(BattleManager.battleTeam[0]);
 
         opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
-        opponentPokemonName.SetText("Aerodactyl");
+        opponentPokemonName.SetText(BattleManager.opponentTeam[0]);
 
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
         opponentHealthBar = GameObject.Find("OpponentHealthBar").GetComponent<HealthBar>();
