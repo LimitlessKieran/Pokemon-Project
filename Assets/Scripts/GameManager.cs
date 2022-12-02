@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public List<string> PokemonTeam = new List<string>(){ "1", "2", "3" };
     public static GameManager gameManagerInstance;
     public GameObject go;
-    public GameManager Instance;
 
     void Start()
     {
@@ -24,12 +23,12 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        if (Instance == null)
+        if (gameManagerInstance == null)
         {
-            Instance = this;
+            gameManagerInstance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else if (Instance != this)
+        else if (gameManagerInstance != this)
         {
             Destroy(gameObject);
         }

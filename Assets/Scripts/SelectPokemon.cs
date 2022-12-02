@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SelectPokemon : MonoBehaviour
 {
-
     public GameObject pokemon;
     Vector3 pedestalPos = new Vector3(0.17f, -1.47f, 0.6f); //6868628
     Vector3 pedestalRotation = new Vector3(0f, 90f, 0f);

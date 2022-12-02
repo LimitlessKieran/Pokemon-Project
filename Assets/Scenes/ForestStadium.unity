@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbc56d6518b30b48b2f29adac000dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1743564896}
+  target: {fileID: 1632749788}
   speed: 0.1
 --- !u!1 &277259432
 GameObject:
@@ -6495,6 +6495,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615287912}
   m_CullTransparentMesh: 1
+--- !u!1 &1632749787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632749788}
+  m_Layer: 0
+  m_Name: PivotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632749788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632749787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.29, y: 0.13, z: 37.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1701771100
 GameObject:
   m_ObjectHideFlags: 0
@@ -6740,7 +6771,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PokemonTeam: []
   go: {fileID: 0}
-  Instance: {fileID: 0}
 --- !u!4 &1743564896
 Transform:
   m_ObjectHideFlags: 0
