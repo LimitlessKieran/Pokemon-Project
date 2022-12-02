@@ -73,10 +73,12 @@ public class BattleUI : MonoBehaviour
         itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
         partyPanel = GameObject.FindGameObjectWithTag("PartyPanel");
 
+        /*
         attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Flamethrower>().display());
         attackButtonText2.SetText(currentPlayerPokemon.GetComponent<WingAttack>().display());
         attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Bite>().display());
         attackButtonText4.SetText(currentPlayerPokemon.GetComponent<FireBlast>().display());
+        */
 
         attackPanel.gameObject.SetActive(false);
         itemPanel.gameObject.SetActive(false);
@@ -157,7 +159,7 @@ public class BattleUI : MonoBehaviour
 
     public void useMove()
     {
-        int movePower = currentPlayerPokemon.GetComponent<Flamethrower>().getPower();
+        int movePower = 5;
         int pokemonDamage = currentPlayerPokemon.GetComponent<Charizard>().getAttack();
         int opposingDefense = currentOpponentPokemon.GetComponent<Aerodactyl>().getDefense();        
 
