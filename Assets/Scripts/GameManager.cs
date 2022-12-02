@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
        
     }
 
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
     private void Awake()
     {
         if (gameManagerInstance == null)
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
