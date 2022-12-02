@@ -7,18 +7,40 @@ public class Aerodactyl : MonoBehaviour
     int health;
     int attack;
     int defense;
+    GameManager.Type type = GameManager.Type.FLYING;
 
-    string move1 = "AerialAce";
-    string move2 = "Pursuit";
-    string move3 = "RockTomb";
-    string move4 = "SkyDrop";
+    string move1Name = "Aerial Ace";
+    int move1Uses = 20;
+    int move1Power = 60;
+    int move1Accuracy = 100;
+    GameManager.Type move1Type = GameManager.Type.FLYING;
+
+    string move2Name = "Pursuit";
+    int move2Uses = 20;
+    int move2Power = 40;
+    int move2Accuracy = 100;
+    GameManager.Type move2Type = GameManager.Type.FIGHTING;
+
+    string move3Name = "Rock Tomb";
+    int move3Uses = 20;
+    int move3Power = 60;
+    int move3Accuracy = 95;
+    GameManager.Type move3Type = GameManager.Type.NORMAL;
+
+    string move4Name = "Brave Bird";
+    int move4Uses = 1;
+    int move4Power = 120;
+    int move4Accuracy = 100;
+    GameManager.Type move4Type = GameManager.Type.FLYING;
+
+    System.Random random = new System.Random();
 
     // Start is called before the first frame update
     void Start()
     {
         health = 200;
         attack = 100;
-        defense = 175;
+        defense = 100;
     }
 
     public int getHealth()
@@ -41,23 +63,132 @@ public class Aerodactyl : MonoBehaviour
         return defense;
     }
 
+    public GameManager.Type getType()
+    {
+        return type;
+    }
+
     public string getMove1()
     {
-        return move1;
+        return move1Name;
+    }
+
+    public int useMove1()
+    {
+        int damage;
+
+        if (random.Next(1, 100) <= move1Accuracy)
+            damage = move1Power + attack;
+        else
+            damage = 0;
+
+        return damage;
+    }
+
+    public string displayMove1()
+    {
+        return move1Name + "\n" +
+            " Uses: " + move1Uses + "\n\n" +
+            " Power: " + move1Power + "\n" +
+            " Accuracy: " + move1Accuracy + "\n" +
+            " Type: " + move1Type;
+    }
+
+    public GameManager.Type getMove1Type()
+    {
+        return move1Type;
     }
 
     public string getMove2()
     {
-        return move2;
+        return move2Name;
+    }
+
+    public int useMove2()
+    {
+        int damage;
+
+        if (random.Next(1, 100) <= move2Accuracy)
+            damage = move2Power + attack;
+        else
+            damage = 0;
+
+        return damage;
+    }
+
+    public string displayMove2()
+    {
+        return move2Name + "\n" +
+            " Uses: " + move2Uses + "\n\n" +
+            " Power: " + move2Power + "\n" +
+            " Accuracy: " + move2Accuracy + "\n" +
+            " Type: " + move2Type;
+    }
+
+    public GameManager.Type getMove2Type()
+    {
+        return move2Type;
     }
 
     public string getMove3()
     {
-        return move3;
+        return move3Name;
+    }
+
+    public int useMove3()
+    {
+        int damage;
+
+        if (random.Next(1, 100) <= move3Accuracy)
+            damage = move3Power + attack;
+        else
+            damage = 0;
+
+        return damage;
+    }
+
+    public string displayMove3()
+    {
+        return move3Name + "\n" +
+            " Uses: " + move3Uses + "\n\n" +
+            " Power: " + move3Power + "\n" +
+            " Accuracy: " + move3Accuracy + "\n" +
+            " Type: " + move3Type;
+    }
+
+    public GameManager.Type getMove3Type()
+    {
+        return move3Type;
     }
 
     public string getMove4()
     {
-        return move4;
+        return move4Name;
+    }
+
+    public int useMove4()
+    {
+        int damage;
+
+        if (random.Next(1, 100) <= move4Accuracy)
+            damage = move4Power + attack;
+        else
+            damage = 0;
+
+        return damage;
+    }
+
+    public string displayMove4()
+    {
+        return move4Name + "\n" +
+            " Uses: " + move4Uses + "\n\n" +
+            " Power: " + move4Power + "\n" +
+            " Accuracy: " + move4Accuracy + "\n" +
+            " Type: " + move4Type;
+    }
+
+    public GameManager.Type getMove4Type()
+    {
+        return move4Type;
     }
 }

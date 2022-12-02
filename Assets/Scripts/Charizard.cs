@@ -15,7 +15,7 @@ public class Charizard : MonoBehaviour
     int move1Accuracy = 100;
     GameManager.Type move1Type = GameManager.Type.FIRE;
 
-    string move2Name = "WingAttack";
+    string move2Name = "Wing Attack";
     int move2Uses = 20;
     int move2Power = 60;
     int move2Accuracy = 100;
@@ -27,7 +27,7 @@ public class Charizard : MonoBehaviour
     int move3Accuracy = 100;
     GameManager.Type move3Type = GameManager.Type.NORMAL;
 
-    string move4Name = "FireBlast";
+    string move4Name = "Fire Blast";
     int move4Uses = 2;
     int move4Power = 120;
     int move4Accuracy = 85;    
