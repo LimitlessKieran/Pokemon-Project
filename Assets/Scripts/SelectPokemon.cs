@@ -12,17 +12,19 @@ public class SelectPokemon : MonoBehaviour
     Vector3 awayPosition = new Vector3(-946f, -1.47f, -205);
     Image image,image2,image3, backgroundimage;
     public GameObject battlebtn;
-    public GameObject lockbtn;
+    public GameObject lockbtn, unlockbtn;
     public Sprite c_Sprite;
     public Sprite s_Sprite;
     public Sprite f_Sprite;
     public Sprite p_Sprite;
     public Sprite a_Sprite;
     public Sprite g_Sprite;
+    public Sprite ball1, ball2, ball3;
     public int counter = 1;
     public string pokemon1;
     public string pokemon2;
     public string pokemon3;
+    public SelectPokemon Instance;
 
     public List<string> PokemonTeam = new List<string>();
 
@@ -33,6 +35,7 @@ public class SelectPokemon : MonoBehaviour
         image3 = GameObject.FindWithTag("pokemon3").GetComponent<Image>();
         backgroundimage = GameObject.FindWithTag("backgroundimage").GetComponent<Image>();
         lockbtn.SetActive(false);
+        unlockbtn.SetActive(false);
         battlebtn.SetActive(false);
     }
 
@@ -41,7 +44,19 @@ public class SelectPokemon : MonoBehaviour
     {
         
     }
-    public void swapPlaces(string pokemonName, Sprite sprite)
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+        public void swapPlaces(string pokemonName, Sprite sprite)
     {
         if (pokemon != null)
         {
@@ -155,6 +170,27 @@ public class SelectPokemon : MonoBehaviour
         }
 
         lockbtn.SetActive(false);
+        unlockbtn.SetActive(true);
+    }
+
+    public void onClear()
+    {
+        counter = 1;
+        PokemonTeam.Clear();
+        pokemon1 = "";
+        pokemon2 = "";
+        pokemon3 = "";
+
+        image.sprite = ball1;
+        image2.sprite = ball2;
+        image3.sprite = ball3;
+
+        battlebtn.SetActive(false);
+        lockbtn.SetActive(false);
+        unlockbtn.SetActive(false);
+        pokemon.transform.position = awayPosition;
+        backgroundimage.sprite = null;
+
     }
 
     public void battleTime()
