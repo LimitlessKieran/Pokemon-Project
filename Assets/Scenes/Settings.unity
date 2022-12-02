@@ -543,13 +543,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 920816485}
+  m_Father: {fileID: 495575161}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 578.24, y: -209.8181}
-  m_SizeDelta: {x: -1156.5, y: -419.6361}
+  m_AnchoredPosition: {x: 11, y: 1.1818542}
+  m_SizeDelta: {x: 80.54419, y: 65.14911}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451475560
 MonoBehaviour:
@@ -668,13 +668,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 451475559}
   - {fileID: 2088626309}
   m_Father: {fileID: 920816485}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -396, y: 329}
+  m_AnchoredPosition: {x: -456, y: 329}
   m_SizeDelta: {x: 682.9558, y: 595.2148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495575162
@@ -724,6 +725,18 @@ MonoBehaviour:
       - m_Target: {fileID: 466588583}
         m_TargetAssemblyTypeName: StadiumChoice, Assembly-CSharp
         m_MethodName: selectStageForest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1638650901}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -839,12 +852,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 920816485}
+  m_Father: {fileID: 2103252681}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1115, y: 330.1819}
+  m_AnchoredPosition: {x: -351, y: 294.78928}
   m_SizeDelta: {x: 763.5, y: 660.3639}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &603756868
@@ -1088,8 +1101,6 @@ RectTransform:
   - {fileID: 283809113}
   - {fileID: 603756869}
   - {fileID: 1752942321}
-  - {fileID: 451475559}
-  - {fileID: 508111604}
   - {fileID: 495575161}
   - {fileID: 2103252681}
   m_Father: {fileID: 0}
@@ -2161,12 +2172,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1224962731}
+  - {fileID: 508111604}
   m_Father: {fileID: 920816485}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1102, y: 333}
+  m_AnchoredPosition: {x: -1348, y: 333}
   m_SizeDelta: {x: 682.9558, y: 595.2148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103252682
@@ -2216,6 +2228,18 @@ MonoBehaviour:
       - m_Target: {fileID: 466588583}
         m_TargetAssemblyTypeName: StadiumChoice, Assembly-CSharp
         m_MethodName: selectStageNight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1638650901}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
