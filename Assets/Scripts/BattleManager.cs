@@ -14,7 +14,7 @@ public class BattleManager : MonoBehaviour
     Vector3 oppTeam = new Vector3(25.4567f, 0.15f, 33.15f);
     Vector3 away = new Vector3(25.4567f, 0.15f, 33.15f);
 
-    public List<string> battleTeam = new List<string>();
+    public static List<string> battleTeam = new List<string>();
         
     // Start is called before the first frame update
     void Start()

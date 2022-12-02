@@ -23,15 +23,28 @@ public class BattleUI : MonoBehaviour
     GameObject attackButton3;
     GameObject attackButton4;
 
-    string move1;
-    string move2;
-    string move3;
-    string move4;
-
     TMP_Text attackButtonText1;
     TMP_Text attackButtonText2;
     TMP_Text attackButtonText3;
     TMP_Text attackButtonText4;
+
+    GameObject itemButton1;
+    GameObject itemButton2;
+    GameObject itemButton3;
+    GameObject itemButton4;
+
+    TMP_Text itemButtonText1;
+    TMP_Text itemButtonText2;
+    TMP_Text itemButtonText3;
+    TMP_Text itemButtonText4;
+
+    GameObject partyButton1;
+    GameObject partyButton2;
+    GameObject partyButton3;
+
+    TMP_Text partyButtonText1;
+    TMP_Text partyButtonText2;
+    TMP_Text partyButtonText3;
 
     TMP_Text playerPokemonName;
     TMP_Text opponentPokemonName;
@@ -39,11 +52,11 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentPlayerPokemon = GameObject.Find("Charizard");
+        currentPlayerPokemon = GameObject.Find(BattleManager.battleTeam[0]);
         currentOpponentPokemon = GameObject.Find("Aerodactyl");
 
         playerPokemonName = GameObject.Find("PokemonName").GetComponent<TMP_Text>();
-        playerPokemonName.SetText("Charizard");
+        playerPokemonName.SetText(BattleManager.battleTeam[0]);
 
         opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
         opponentPokemonName.SetText("Aerodactyl");
@@ -53,11 +66,6 @@ public class BattleUI : MonoBehaviour
 
         currentOpponentHealth = 100;
         currentPlayerHealth = 100;
-
-        move1 = currentPlayerPokemon.GetComponent<Charizard>().getMove1();
-        move2 = currentPlayerPokemon.GetComponent<Charizard>().getMove2();
-        move3 = currentPlayerPokemon.GetComponent<Charizard>().getMove3();
-        move4 = currentPlayerPokemon.GetComponent<Charizard>().getMove4();
 
         attackButton1 = GameObject.Find("Move1");
         attackButton2 = GameObject.Find("Move2");
@@ -69,16 +77,33 @@ public class BattleUI : MonoBehaviour
         attackButtonText3 = GameObject.Find("MoveText3").GetComponent<TMP_Text>();
         attackButtonText4 = GameObject.Find("MoveText4").GetComponent<TMP_Text>();
 
+        itemButton1 = GameObject.Find("Item1");
+        itemButton2 = GameObject.Find("Item2");
+        itemButton3 = GameObject.Find("Item3");
+        itemButton4 = GameObject.Find("Item4");
+
+        itemButtonText1 = GameObject.Find("ItemText1").GetComponent<TMP_Text>();
+        itemButtonText2 = GameObject.Find("ItemText2").GetComponent<TMP_Text>();
+        itemButtonText3 = GameObject.Find("ItemText3").GetComponent<TMP_Text>();
+        itemButtonText4 = GameObject.Find("ItemText4").GetComponent<TMP_Text>();
+
+        partyButton1 = GameObject.Find("Pokemon1");
+        partyButton2 = GameObject.Find("Pokemon2");
+        partyButton3 = GameObject.Find("Pokemon3");
+
+        partyButtonText1 = GameObject.Find("PokemonText1").GetComponent<TMP_Text>();
+        partyButtonText2 = GameObject.Find("PokemonText2").GetComponent<TMP_Text>();
+        partyButtonText3 = GameObject.Find("PokemonText3").GetComponent<TMP_Text>();
+
         attackPanel = GameObject.FindGameObjectWithTag("AttackPanel");
         itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
         partyPanel = GameObject.FindGameObjectWithTag("PartyPanel");
+        
+        moveDisplay();
 
-        /*
-        attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Flamethrower>().display());
-        attackButtonText2.SetText(currentPlayerPokemon.GetComponent<WingAttack>().display());
-        attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Bite>().display());
-        attackButtonText4.SetText(currentPlayerPokemon.GetComponent<FireBlast>().display());
-        */
+        partyButtonText1.SetText(BattleManager.battleTeam[0]);
+        partyButtonText2.SetText(BattleManager.battleTeam[1]);
+        partyButtonText3.SetText(BattleManager.battleTeam[2]);        
 
         attackPanel.gameObject.SetActive(false);
         itemPanel.gameObject.SetActive(false);
@@ -89,6 +114,52 @@ public class BattleUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void moveDisplay()
+    {
+        if (BattleManager.battleTeam[0] == "Charizard")
+        {
+            attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove1());
+            attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove2());
+            attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove3());
+            attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove4());
+        }
+        else if (BattleManager.battleTeam[0] == "Pikachu")
+        {
+            attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove1());
+            attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove2());
+            attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove3());
+            attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove4());
+        }
+        else if (BattleManager.battleTeam[0] == "Aerodactyl")
+        {
+            attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove1());
+            attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove2());
+            attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove3());
+            attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove4());
+        }
+        else if (BattleManager.battleTeam[0] == "Feraligatr")
+        {
+            attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove1());
+            attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove2());
+            attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove3());
+            attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove4());
+        }
+        else if (BattleManager.battleTeam[0] == "Gallade")
+        {
+            attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove1());
+            attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove2());
+            attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove3());
+            attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove4());
+        }
+        else if (BattleManager.battleTeam[0] == "Sceptile")
+        {
+            attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove1());
+            attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove2());
+            attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove3());
+            attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove4());
+        }
     }
 
     public void clickAttack()
