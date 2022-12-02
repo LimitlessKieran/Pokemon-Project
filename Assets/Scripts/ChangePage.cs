@@ -34,4 +34,10 @@ public class ChangePage : MonoBehaviour
         print("IIII");
         print("");
     }
+    public void ChangeScene()
+    {
+        GameObject manager = GameObject.Find("GameManager");
+
+        manager.GetComponent<GameManager>().LoadScene("MainScene");
+    }
 }

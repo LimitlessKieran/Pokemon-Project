@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DestroyTheme : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public string objectName;
     void Start()
     {
-        Destroy(GameObject.Find("MusicManager"));
+        Destroy(GameObject.Find(objectName));
     }
 
     // Update is called once per frame

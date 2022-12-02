@@ -49,6 +49,7 @@ public class BattleUI : MonoBehaviour
     TMP_Text playerPokemonName;
     TMP_Text opponentPokemonName;
 
+    public GameObject playerbag;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,8 @@ public class BattleUI : MonoBehaviour
 
         opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
         opponentPokemonName.SetText(BattleManager.opponentTeam[0]);
+
+        playerbag = GameObject.Find("BattleManager");
 
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
         opponentHealthBar = GameObject.Find("OpponentHealthBar").GetComponent<HealthBar>();
@@ -100,7 +103,7 @@ public class BattleUI : MonoBehaviour
         partyPanel = GameObject.FindGameObjectWithTag("PartyPanel");
         
         moveDisplay();
-
+        ItemDisplay();
         partyButtonText1.SetText(BattleManager.battleTeam[0]);
         partyButtonText2.SetText(BattleManager.battleTeam[1]);
         partyButtonText3.SetText(BattleManager.battleTeam[2]);        
@@ -160,6 +163,14 @@ public class BattleUI : MonoBehaviour
             attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove3());
             attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove4());
         }
+
+    }
+    public void ItemDisplay()
+    {
+        itemButtonText1.SetText(playerbag.GetComponent<Bag>().displayItem1(BattleManager.Bag[0]));
+        itemButtonText2.SetText(playerbag.GetComponent<Bag>().displayItem2(BattleManager.Bag[1]));
+        itemButtonText3.SetText(playerbag.GetComponent<Bag>().displayItem3(BattleManager.Bag[2]));
+        itemButtonText4.SetText(playerbag.GetComponent<Bag>().displayItem4(BattleManager.Bag[3]));
     }
 
     public void clickAttack()

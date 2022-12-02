@@ -18,8 +18,9 @@ public class BattleManager : MonoBehaviour
     public static List<string> battleTeam = new List<string>();
     public static List<string> opponentTeam = new List<string>();
     public List<string> allPokemon = new List<string>();
+    public static List<int> Bag = new List<int>();
 
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class BattleManager : MonoBehaviour
         allPokemon.Add("Gallade");
 
         battleTeam = go.GetComponent<SelectPokemon>().PokemonTeam;
+        Bag = go.GetComponent<SelectPokemon>().Bag;
         for (int i = 0; i < allPokemon.Count - 1; i++)
         {
 

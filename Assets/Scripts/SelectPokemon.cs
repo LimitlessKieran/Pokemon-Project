@@ -9,9 +9,11 @@ public class SelectPokemon : MonoBehaviour
     Vector3 pedestalPos = new Vector3(0.17f, -1.47f, 0.6f); //6868628
     Vector3 pedestalRotation = new Vector3(0f, 90f, 0f);
     Vector3 awayPosition = new Vector3(-946f, -1.47f, -205);
-    Image image,image2,image3, backgroundimage;
+    Image image, image2, image3, backgroundimage;
     public GameObject battlebtn;
+    public GameObject TeamCreater;
     public GameObject lockbtn, unlockbtn;
+    public GameObject errortxt;
     public Sprite c_Sprite;
     public Sprite s_Sprite;
     public Sprite f_Sprite;
@@ -26,7 +28,9 @@ public class SelectPokemon : MonoBehaviour
     public SelectPokemon Instance;
 
     public List<string> PokemonTeam = new List<string>();
+    public List<int> Bag = new List<int>();
 
+    int seconds = 0;
     void Start()
     {
         image = GameObject.FindWithTag("pokemon1").GetComponent<Image>();
@@ -36,12 +40,22 @@ public class SelectPokemon : MonoBehaviour
         lockbtn.SetActive(false);
         unlockbtn.SetActive(false);
         battlebtn.SetActive(false);
+        errortxt.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (errortxt)
+        {
+            seconds++;
+            if (seconds % 600 == 0)
+            {
+                errortxt.SetActive(false);
+                seconds = 0;
+            }
+
+        }
     }
     private void Awake()
     {
@@ -55,7 +69,7 @@ public class SelectPokemon : MonoBehaviour
             Destroy(gameObject);
         }
     }
-        public void swapPlaces(string pokemonName, Sprite sprite)
+    public void swapPlaces(string pokemonName, Sprite sprite)
     {
         if (pokemon != null)
         {
@@ -65,7 +79,7 @@ public class SelectPokemon : MonoBehaviour
                 image.sprite = sprite;
                 pokemon1 = pokemonName;
                 backgroundimage.sprite = sprite;
-            }else if (counter == 2)
+            } else if (counter == 2)
             {
                 image2.sprite = sprite;
                 pokemon2 = pokemonName;
@@ -98,52 +112,53 @@ public class SelectPokemon : MonoBehaviour
     {
         swapPlaces("Charizard", c_Sprite);
         lockbtn.SetActive(true);
-       
+
     }
     public void ChooseSeceptile()
     {
 
-        swapPlaces("Sceptile",s_Sprite);
+        swapPlaces("Sceptile", s_Sprite);
         lockbtn.SetActive(true);
 
     }
 
     public void ChooseFeraligatr()
     {
-        swapPlaces("Feraligatr",f_Sprite);
+        swapPlaces("Feraligatr", f_Sprite);
         lockbtn.SetActive(true);
     }
 
     public void ChoosePikachu()
     {
-        swapPlaces("Pikachu",p_Sprite);
+        swapPlaces("Pikachu", p_Sprite);
         lockbtn.SetActive(true);
 
     }
     public void ChooseAerodactyl()
     {
-        swapPlaces("Aerodactyl",a_Sprite);
+        swapPlaces("Aerodactyl", a_Sprite);
         lockbtn.SetActive(true);
 
     }
     public void ChooseGallade()
     {
-        swapPlaces("Gallade",g_Sprite);
+        swapPlaces("Gallade", g_Sprite);
         lockbtn.SetActive(true);
 
 
     }
     public void onSelect()
     {
-      if(counter == 1)
-      {
+        if (counter == 1)
+        {
             PokemonTeam.Add(pokemon1);
             counter++;
-      }
-      else if (counter == 2)
+        }
+        else if (counter == 2)
         {
             if (PokemonTeam.Contains(pokemon2))
             {
+                errortxt.SetActive(true);
                 print("Err0r");
             }
             else
@@ -152,10 +167,11 @@ public class SelectPokemon : MonoBehaviour
                 counter++;
             }
         }
-      else if(counter == 3)
+        else if (counter == 3)
         {
             if (PokemonTeam.Contains(pokemon3))
             {
+                errortxt.SetActive(true);
                 print("Err0r");
             }
             else
@@ -165,7 +181,7 @@ public class SelectPokemon : MonoBehaviour
                 battlebtn.SetActive(true);
                 lockbtn.SetActive(false);
             }
-            
+
         }
 
         lockbtn.SetActive(false);
@@ -191,11 +207,20 @@ public class SelectPokemon : MonoBehaviour
         backgroundimage.sprite = null;
 
     }
-
     public void battleTime()
     {
-       
 
-    }
+     
+
+        Bag.Add(TeamCreater.GetComponent<SelectItem>().potionCount);
+        Bag.Add(TeamCreater.GetComponent<SelectItem>().xAttackCount);
+        Bag.Add(TeamCreater.GetComponent<SelectItem>().shieldCount);
+        Bag.Add(TeamCreater.GetComponent<SelectItem>().elixirCount);
+
+        GameObject manager = GameObject.Find("GameManager");
+
+        manager.GetComponent<GameManager>().LoadScene("ForestStadium");
+    } 
+
 }
 
