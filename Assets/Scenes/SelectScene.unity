@@ -3272,7 +3272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be15dfe7e3cc494499513d80bcbda6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: 
+  objectName: MusicManager
 --- !u!4 &771848994
 Transform:
   m_ObjectHideFlags: 0

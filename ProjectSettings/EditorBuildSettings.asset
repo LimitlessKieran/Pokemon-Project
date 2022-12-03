@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/SelectScene.unity
+    guid: c3fb83275c0b640659330ba79cb9366c
+  - enabled: 1
     path: Assets/Scenes/PokemonList.unity
     guid: eab968a71bdd2364796c83b7554fa8af
   - enabled: 1
@@ -18,12 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ForestStadium.unity
     guid: 106025b4713992744bb2e8999d6a3608
   - enabled: 1
+    path: Assets/Scenes/NightStadium.unity
+    guid: f22e0435e971840e99c5d711986d5a22
+  - enabled: 1
     path: Assets/Scenes/Defeat.unity
     guid: f64b5315e91d3954abb0947e7b5323af
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: 6fdc721dbea185a408fcab6bf3d9ec65
-  - enabled: 1
-    path: Assets/Scenes/SelectScene.unity
-    guid: c3fb83275c0b640659330ba79cb9366c
   m_configObjects: {}

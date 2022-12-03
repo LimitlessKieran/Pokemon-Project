@@ -9,16 +9,16 @@ public class GameManager : MonoBehaviour
     public List<string> PokemonTeam = new List<string>(){ "1", "2", "3" };
     public static GameManager gameManagerInstance;
     public GameObject go;
-
+    public bool isStageForest, isStageNight;
     void Start()
     {
-       
+        isStageForest = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void Awake()
@@ -48,5 +48,19 @@ public class GameManager : MonoBehaviour
     public List<string> GetPokemonTeam()
     {
         return PokemonTeam;
+    }
+
+    public void selectStageForest()
+    {
+        isStageForest = true;
+        isStageNight = false;
+       
+    }
+
+    public void selectStageNight()
+    {
+        isStageForest = false;
+        isStageNight = true;
+        print("im here");
     }
 }

@@ -28,6 +28,8 @@ public class SelectPokemon : MonoBehaviour
     public SelectPokemon Instance;
 
     public List<string> PokemonTeam = new List<string>();
+    public List<string> opponentTeam = new List<string>();
+    public List<string> allPokemon = new List<string>();
     public List<int> Bag = new List<int>();
 
     int seconds = 0;
@@ -210,16 +212,48 @@ public class SelectPokemon : MonoBehaviour
     public void battleTime()
     {
 
-     
-
         Bag.Add(TeamCreater.GetComponent<SelectItem>().potionCount);
         Bag.Add(TeamCreater.GetComponent<SelectItem>().xAttackCount);
         Bag.Add(TeamCreater.GetComponent<SelectItem>().shieldCount);
         Bag.Add(TeamCreater.GetComponent<SelectItem>().elixirCount);
 
         GameObject manager = GameObject.Find("GameManager");
+        allPokemon.Add("Charizard");
+        allPokemon.Add("Sceptile");
+        allPokemon.Add("Pikachu");
+        allPokemon.Add("Feraligatr");
+        allPokemon.Add("Aerodactyl");
+        allPokemon.Add("Gallade");
 
-        manager.GetComponent<GameManager>().LoadScene("ForestStadium");
+        for (int i = 0; i < allPokemon.Count - 1; i++)
+        {
+
+            if (PokemonTeam.Contains(allPokemon[i]))
+            {
+
+            }
+            else
+            {
+                opponentTeam.Add(allPokemon[i]);
+            }
+        }
+        if (manager)
+        {
+            if (manager.GetComponent<GameManager>().isStageForest)
+            {
+                manager.GetComponent<GameManager>().LoadScene("ForestStadium");
+            }
+            else if ((manager.GetComponent<GameManager>().isStageNight))
+            {
+                manager.GetComponent<GameManager>().LoadScene("NightStadium");
+            }
+            
+        }
+        else
+        {
+            manager.GetComponent<GameManager>().LoadScene("ForestStadium");
+            print("Default");
+        }
     } 
 
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class StadiumChoice : MonoBehaviour
 {
     public GameObject ForestPanel, NightPanel;
-    public bool isStageForest, isStageNight;
+    public GameObject manager;
+    public static StadiumChoice gameManagerInstance;
+
     void Start()
     {
-        
+       manager = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -17,19 +19,20 @@ public class StadiumChoice : MonoBehaviour
         
     }
 
+
     public void selectStageForest()
     {
-        isStageForest = true;
-        isStageNight = false;
+      
         ForestPanel.SetActive(true);
         NightPanel.SetActive(false);
+        manager.GetComponent<GameManager>().selectStageForest();
     }
 
     public void selectStageNight()
     {
-        isStageForest = false;
-        isStageNight = true;
+      
         ForestPanel.SetActive(false);
         NightPanel.SetActive(true);
+        manager.GetComponent<GameManager>().selectStageNight();
     }
 }

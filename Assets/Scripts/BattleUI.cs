@@ -49,18 +49,19 @@ public class BattleUI : MonoBehaviour
     TMP_Text playerPokemonName;
     TMP_Text opponentPokemonName;
 
-    public GameObject playerbag;
+    public GameObject playerbag , go;
     // Start is called before the first frame update
     void Start()
     {
-        currentPlayerPokemon = GameObject.Find(BattleManager.battleTeam[0]);
-        currentOpponentPokemon = GameObject.Find(BattleManager.opponentTeam[0]);
+        go = GameObject.Find("TeamCreater");
+
+        currentPlayerPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[0]);
 
         playerPokemonName = GameObject.Find("PokemonName").GetComponent<TMP_Text>();
-        playerPokemonName.SetText(BattleManager.battleTeam[0]);
+        playerPokemonName.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[0]);
 
         opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
-        opponentPokemonName.SetText(BattleManager.opponentTeam[0]);
+        opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
 
         playerbag = GameObject.Find("BattleManager");
 
@@ -104,9 +105,9 @@ public class BattleUI : MonoBehaviour
         
         moveDisplay();
         ItemDisplay();
-        partyButtonText1.SetText(BattleManager.battleTeam[0]);
-        partyButtonText2.SetText(BattleManager.battleTeam[1]);
-        partyButtonText3.SetText(BattleManager.battleTeam[2]);        
+        partyButtonText1.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[0]);
+        partyButtonText2.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[1]);
+        partyButtonText3.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[2]);        
 
         attackPanel.gameObject.SetActive(false);
         itemPanel.gameObject.SetActive(false);
@@ -121,42 +122,42 @@ public class BattleUI : MonoBehaviour
 
     public void moveDisplay()
     {
-        if (BattleManager.battleTeam[0] == "Charizard")
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
         {
             attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove1());
             attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove2());
             attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove3());
             attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Charizard>().displayMove4());
         }
-        else if (BattleManager.battleTeam[0] == "Pikachu")
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
         {
             attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove1());
             attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove2());
             attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove3());
             attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Pikachu>().displayMove4());
         }
-        else if (BattleManager.battleTeam[0] == "Aerodactyl")
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
         {
             attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove1());
             attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove2());
             attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove3());
             attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Aerodactyl>().displayMove4());
         }
-        else if (BattleManager.battleTeam[0] == "Feraligatr")
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
         {
             attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove1());
             attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove2());
             attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove3());
             attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Feraligatr>().displayMove4());
         }
-        else if (BattleManager.battleTeam[0] == "Gallade")
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
         {
             attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove1());
             attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove2());
             attackButtonText3.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove3());
             attackButtonText4.SetText(currentPlayerPokemon.GetComponent<Gallade>().displayMove4());
         }
-        else if (BattleManager.battleTeam[0] == "Sceptile")
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
         {
             attackButtonText1.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove1());
             attackButtonText2.SetText(currentPlayerPokemon.GetComponent<Sceptile>().displayMove2());
@@ -167,10 +168,10 @@ public class BattleUI : MonoBehaviour
     }
     public void ItemDisplay()
     {
-        itemButtonText1.SetText(playerbag.GetComponent<Bag>().displayItem1(BattleManager.Bag[0]));
-        itemButtonText2.SetText(playerbag.GetComponent<Bag>().displayItem2(BattleManager.Bag[1]));
-        itemButtonText3.SetText(playerbag.GetComponent<Bag>().displayItem3(BattleManager.Bag[2]));
-        itemButtonText4.SetText(playerbag.GetComponent<Bag>().displayItem4(BattleManager.Bag[3]));
+        itemButtonText1.SetText(playerbag.GetComponent<Bag>().displayItem1(go.GetComponent<SelectPokemon>().Bag[0]));
+        itemButtonText2.SetText(playerbag.GetComponent<Bag>().displayItem2(go.GetComponent<SelectPokemon>().Bag[1]));
+        itemButtonText3.SetText(playerbag.GetComponent<Bag>().displayItem3(go.GetComponent<SelectPokemon>().Bag[2]));
+        itemButtonText4.SetText(playerbag.GetComponent<Bag>().displayItem4(go.GetComponent<SelectPokemon>().Bag[3]));
     }
 
     public void clickAttack()
