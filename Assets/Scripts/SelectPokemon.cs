@@ -59,6 +59,7 @@ public class SelectPokemon : MonoBehaviour
 
         }
     }
+
     private void Awake()
     {
         if (Instance == null)
@@ -71,6 +72,7 @@ public class SelectPokemon : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void swapPlaces(string pokemonName, Sprite sprite)
     {
         if (pokemon != null)
@@ -110,18 +112,17 @@ public class SelectPokemon : MonoBehaviour
             pokemon.transform.eulerAngles = pedestalRotation;
         }
     }
+
     public void ChooseCharizard()
     {
         swapPlaces("Charizard", c_Sprite);
         lockbtn.SetActive(true);
-
     }
+
     public void ChooseSeceptile()
     {
-
         swapPlaces("Sceptile", s_Sprite);
         lockbtn.SetActive(true);
-
     }
 
     public void ChooseFeraligatr()
@@ -134,21 +135,21 @@ public class SelectPokemon : MonoBehaviour
     {
         swapPlaces("Pikachu", p_Sprite);
         lockbtn.SetActive(true);
-
     }
+
     public void ChooseAerodactyl()
     {
         swapPlaces("Aerodactyl", a_Sprite);
         lockbtn.SetActive(true);
-
     }
+
     public void ChooseGallade()
     {
         swapPlaces("Gallade", g_Sprite);
         lockbtn.SetActive(true);
 
-
     }
+
     public void onSelect()
     {
         if (counter == 1)
@@ -207,11 +208,10 @@ public class SelectPokemon : MonoBehaviour
         unlockbtn.SetActive(false);
         pokemon.transform.position = awayPosition;
         backgroundimage.sprite = null;
-
     }
+
     public void battleTime()
     {
-
         Bag.Add(TeamCreater.GetComponent<SelectItem>().potionCount);
         Bag.Add(TeamCreater.GetComponent<SelectItem>().xAttackCount);
         Bag.Add(TeamCreater.GetComponent<SelectItem>().shieldCount);
@@ -227,7 +227,6 @@ public class SelectPokemon : MonoBehaviour
 
         for (int i = 0; i < allPokemon.Count - 1; i++)
         {
-
             if (PokemonTeam.Contains(allPokemon[i]))
             {
 
@@ -246,15 +245,13 @@ public class SelectPokemon : MonoBehaviour
             else if ((manager.GetComponent<GameManager>().isStageNight))
             {
                 manager.GetComponent<GameManager>().LoadScene("NightStadium");
-            }
-            
+            }            
         }
         else
         {
             manager.GetComponent<GameManager>().LoadScene("ForestStadium");
             print("Default");
         }
-    } 
-
+    }
 }
 

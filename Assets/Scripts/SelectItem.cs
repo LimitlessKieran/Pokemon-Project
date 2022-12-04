@@ -11,7 +11,7 @@ public class SelectItem : MonoBehaviour
     public int elixirCount = 0;
     public int seconds = 0;
     public TextMeshProUGUI potionCountText;
-     public TextMeshProUGUI xAttackCountText;
+    public TextMeshProUGUI xAttackCountText;
     public TextMeshProUGUI shieldCountText;
     public TextMeshProUGUI elixirCountText;
 
@@ -35,7 +35,6 @@ public class SelectItem : MonoBehaviour
                 errortxt.SetActive(false);
                 seconds = 0;
             }
-
         }
     }
 
@@ -65,8 +64,8 @@ public class SelectItem : MonoBehaviour
         {
             errortxt.SetActive(true);
         }
-
     }
+
     public void onShieldSelect()
     {
         if (shieldCount < 5)
@@ -79,8 +78,8 @@ public class SelectItem : MonoBehaviour
         {
             errortxt.SetActive(true);
         }
-
     }
+
     public void onElixirSelect()
     {
         if (elixirCount < 5)
@@ -93,7 +92,6 @@ public class SelectItem : MonoBehaviour
         {
             errortxt.SetActive(true);
         }
-
     }
 
     public void clearBag()

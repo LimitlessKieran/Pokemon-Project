@@ -38,7 +38,7 @@ public class Sceptile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 200;
+        health = 1000;
         attack = 100;
         defense = 100;
     }
@@ -82,6 +82,8 @@ public class Sceptile : MonoBehaviour
         else
             damage = 0;
 
+        move1Uses -= 1;
+
         return damage;
     }
 
@@ -92,6 +94,11 @@ public class Sceptile : MonoBehaviour
             " Power: " + move1Power + "\n" +
             " Accuracy: " + move1Accuracy + "\n" +
             " Type: " + move1Type;
+    }
+
+    public int getMove1Uses()
+    {
+        return move1Uses;
     }
 
     public GameManager.Type getMove1Type()
@@ -113,6 +120,8 @@ public class Sceptile : MonoBehaviour
         else
             damage = 0;
 
+        move2Uses -= 1;
+
         return damage;
     }
 
@@ -125,10 +134,17 @@ public class Sceptile : MonoBehaviour
             " Type: " + move2Type;
     }
 
+    public int getMove2Uses()
+    {
+        return move2Uses;
+    }
+
+
     public GameManager.Type getMove2Type()
     {
         return move2Type;
     }
+
 
     public string getMove3()
     {
@@ -144,6 +160,8 @@ public class Sceptile : MonoBehaviour
         else
             damage = 0;
 
+        move3Uses -= 1;
+
         return damage;
     }
 
@@ -154,6 +172,11 @@ public class Sceptile : MonoBehaviour
             " Power: " + move3Power + "\n" +
             " Accuracy: " + move3Accuracy + "\n" +
             " Type: " + move3Type;
+    }
+
+    public int getMove3Uses()
+    {
+        return move3Uses;
     }
 
     public GameManager.Type getMove3Type()
@@ -175,6 +198,8 @@ public class Sceptile : MonoBehaviour
         else
             damage = 0;
 
+        move4Uses -= 1;
+
         return damage;
     }
 
@@ -185,6 +210,11 @@ public class Sceptile : MonoBehaviour
             " Power: " + move4Power + "\n" +
             " Accuracy: " + move4Accuracy + "\n" +
             " Type: " + move4Type;
+    }
+
+    public int getMove4Uses()
+    {
+        return move4Uses;
     }
 
     public GameManager.Type getMove4Type()

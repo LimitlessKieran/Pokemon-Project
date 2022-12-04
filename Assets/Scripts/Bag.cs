@@ -27,11 +27,13 @@ public class Bag : MonoBehaviour
         return "xAttack " + "\n\n" +
             " Uses left : " + amount;
     }
+
     public string displayItem3(int amount)
     {
         return "Shield " + "\n\n" +
             " Uses left : " + amount;
     }
+
     public string displayItem4(int amount)
     {
         return "Elixir " + "\n\n" +
