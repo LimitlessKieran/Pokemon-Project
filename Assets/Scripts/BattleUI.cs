@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleUI : MonoBehaviour
 {
+    int AIcounter;
+
     GameObject attackPanel;
     GameObject itemPanel;
     GameObject partyPanel;
@@ -63,6 +66,8 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AIcounter = 0;
+
         go = GameObject.Find("TeamCreater");
 
         currentPlayerPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[0]);
@@ -330,7 +335,9 @@ public class BattleUI : MonoBehaviour
         if (currentOpponentHealth - damage <= 0)
         {
             opponentHealthBar.setHealth(0);
-            setOpponentPokemonHealth(0);
+            setOpponentPokemonHealth(0);            
+            AIcounter++;
+            StartCoroutine(AIfaint(AIcounter));
         }
         else
         {
@@ -383,11 +390,15 @@ public class BattleUI : MonoBehaviour
             return 1;
         else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.FIGHTING)
             return 3;
+        else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.GRASS)
+            return 3;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.ELECTRIC)
             return 1;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.FIGHTING)
             return 1;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.FLYING)
+            return 3;
+        else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.WATER)
             return 3;
         else if (moveType == GameManager.Type.FIGHTING && opponentType == GameManager.Type.FIGHTING)
             return 1;
@@ -465,6 +476,38 @@ public class BattleUI : MonoBehaviour
         }
 
         return currentHealth;
+    }
+
+    public int getCurrentPokemonMaxHealth()
+    {
+        int maxHealth = 0;
+
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            maxHealth = currentPlayerPokemon.GetComponent<Charizard>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            maxHealth = currentPlayerPokemon.GetComponent<Gallade>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            maxHealth = currentPlayerPokemon.GetComponent<Pikachu>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+            maxHealth = currentPlayerPokemon.GetComponent<Feraligatr>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            maxHealth = currentPlayerPokemon.GetComponent<Sceptile>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            maxHealth = currentPlayerPokemon.GetComponent<Aerodactyl>().getMaxHealth();
+        }
+
+        return maxHealth;
     }
 
     public int getCurrentPokemonHealth()
@@ -724,8 +767,12 @@ public class BattleUI : MonoBehaviour
         yield return new WaitForSeconds(2);
         combatText.SetText("");
 
+        playerHealthBar.setMaxHealth();
+        playerHealthBar.setHealth(getCurrentPokemonHealth());
         moveDisplay();
         checkMoves();
+
+        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator swapParty3()
@@ -750,6 +797,8 @@ public class BattleUI : MonoBehaviour
 
         moveDisplay();
         checkMoves();
+
+        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move1()
@@ -883,6 +932,8 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
+
+        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move2()
@@ -1016,6 +1067,8 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
+
+        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move3()
@@ -1150,6 +1203,8 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
+
+        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move4()
@@ -1281,14 +1336,374 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was super effective!!");
 
         yield return new WaitForSeconds(2);
-        combatText.SetText("");
+        combatText.SetText("Your turn");
         moveDisplay();
         checkMoves();
+
+        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     public void clickParty1()
     {
         combatText.SetText("That pokemon is already out.");
     }
+
+    // **************AI**************
+
+    IEnumerator AIfaint(int c)
+    {
+        combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + " has fainted.");
+        yield return new WaitForSeconds(2);
+
+        if (c == 1)
+        {
+            combatText.SetText("Next up...");
+            yield return new WaitForSeconds(1);
+
+            string temp;
+
+            temp = go.GetComponent<SelectPokemon>().opponentTeam[0];
+            go.GetComponent<SelectPokemon>().opponentTeam[0] = go.GetComponent<SelectPokemon>().opponentTeam[1];
+            go.GetComponent<SelectPokemon>().opponentTeam[1] = temp;
+
+            currentOpponentPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[0]);
+            opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
+
+            combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + "!!");
+            yield return new WaitForSeconds(1);
+            combatText.SetText("");
+        }
+        else if (c == 2)
+        {
+            combatText.SetText("Next up...");
+            yield return new WaitForSeconds(1);
+
+            string temp;
+
+            temp = go.GetComponent<SelectPokemon>().opponentTeam[0];
+            go.GetComponent<SelectPokemon>().opponentTeam[0] = go.GetComponent<SelectPokemon>().opponentTeam[2];
+            go.GetComponent<SelectPokemon>().opponentTeam[2] = temp;
+
+            currentOpponentPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[0]);
+            opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
+
+            combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + "!!");
+            yield return new WaitForSeconds(1);
+            combatText.SetText("");
+        }
+        else
+        {
+            combatText.SetText("Congratulations!\nYou Win!!!");
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("Victory");
+        }
+    }
+
+    IEnumerator AIuseMove(int rand)
+    {
+        bool isCritical = false;
+        string pokemonName = go.GetComponent<SelectPokemon>().opponentTeam[0];
+        string moveName = "";
+        int movePower = 0;
+        int playerDefense = 0;
+        GameManager.Type moveType = GameManager.Type.NORMAL;
+        GameManager.Type playerPokemonType = GameManager.Type.NORMAL;
+
+        if (rand == 1)
+        {            
+            // Get opponent pokemon damage and typing.
+            if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Charizard")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Charizard>().getMove1();
+                movePower = currentOpponentPokemon.GetComponent<Charizard>().useMove1();
+                moveType = currentOpponentPokemon.GetComponent<Charizard>().getMove1Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Gallade")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Gallade>().getMove1();
+                movePower = currentOpponentPokemon.GetComponent<Gallade>().useMove1();
+                moveType = currentOpponentPokemon.GetComponent<Gallade>().getMove1Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Pikachu")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Pikachu>().getMove1();
+                movePower = currentOpponentPokemon.GetComponent<Pikachu>().useMove1();
+                moveType = currentOpponentPokemon.GetComponent<Pikachu>().getMove1Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Feraligatr")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Feraligatr>().getMove1();
+                movePower = currentOpponentPokemon.GetComponent<Feraligatr>().useMove1();
+                moveType = currentOpponentPokemon.GetComponent<Feraligatr>().getMove1Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Sceptile")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Sceptile>().getMove1();
+                movePower = currentOpponentPokemon.GetComponent<Sceptile>().useMove1();
+                moveType = currentOpponentPokemon.GetComponent<Sceptile>().getMove1Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Aerodactyl")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove1();
+                movePower = currentOpponentPokemon.GetComponent<Aerodactyl>().useMove1();
+                moveType = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove1Type();
+            }
+        }
+        else if (rand == 2)
+        {
+            // Get opponent pokemon damage and typing.
+            if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Charizard")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Charizard>().getMove2();
+                movePower = currentOpponentPokemon.GetComponent<Charizard>().useMove2();
+                moveType = currentOpponentPokemon.GetComponent<Charizard>().getMove2Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Gallade")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Gallade>().getMove2();
+                movePower = currentOpponentPokemon.GetComponent<Gallade>().useMove2();
+                moveType = currentOpponentPokemon.GetComponent<Gallade>().getMove2Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Pikachu")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Pikachu>().getMove2();
+                movePower = currentOpponentPokemon.GetComponent<Pikachu>().useMove2();
+                moveType = currentOpponentPokemon.GetComponent<Pikachu>().getMove2Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Feraligatr")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Feraligatr>().getMove2();
+                movePower = currentOpponentPokemon.GetComponent<Feraligatr>().useMove2();
+                moveType = currentOpponentPokemon.GetComponent<Feraligatr>().getMove2Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Sceptile")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Sceptile>().getMove2();
+                movePower = currentOpponentPokemon.GetComponent<Sceptile>().useMove2();
+                moveType = currentOpponentPokemon.GetComponent<Sceptile>().getMove2Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Aerodactyl")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove2();
+                movePower = currentOpponentPokemon.GetComponent<Aerodactyl>().useMove2();
+                moveType = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove2Type();
+            }
+        }
+        else if (rand == 3)
+        {
+            // Get opponent pokemon damage and typing.
+            if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Charizard")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Charizard>().getMove3();
+                movePower = currentOpponentPokemon.GetComponent<Charizard>().useMove3();
+                moveType = currentOpponentPokemon.GetComponent<Charizard>().getMove4Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Gallade")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Gallade>().getMove3();
+                movePower = currentOpponentPokemon.GetComponent<Gallade>().useMove3();
+                moveType = currentOpponentPokemon.GetComponent<Gallade>().getMove3Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Pikachu")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Pikachu>().getMove3();
+                movePower = currentOpponentPokemon.GetComponent<Pikachu>().useMove3();
+                moveType = currentOpponentPokemon.GetComponent<Pikachu>().getMove3Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Feraligatr")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Feraligatr>().getMove3();
+                movePower = currentOpponentPokemon.GetComponent<Feraligatr>().useMove3();
+                moveType = currentOpponentPokemon.GetComponent<Feraligatr>().getMove3Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Sceptile")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Sceptile>().getMove3();
+                movePower = currentOpponentPokemon.GetComponent<Sceptile>().useMove3();
+                moveType = currentOpponentPokemon.GetComponent<Sceptile>().getMove3Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Aerodactyl")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove3();
+                movePower = currentOpponentPokemon.GetComponent<Aerodactyl>().useMove3();
+                moveType = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove3Type();
+            }
+        }
+        else if (rand == 4)
+        {
+            // Get opponent pokemon damage and typing.
+            if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Charizard")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Charizard>().getMove4();
+                movePower = currentOpponentPokemon.GetComponent<Charizard>().useMove4();
+                moveType = currentOpponentPokemon.GetComponent<Charizard>().getMove4Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Gallade")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Gallade>().getMove4();
+                movePower = currentOpponentPokemon.GetComponent<Gallade>().useMove4();
+                moveType = currentOpponentPokemon.GetComponent<Gallade>().getMove4Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Pikachu")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Pikachu>().getMove4();
+                movePower = currentOpponentPokemon.GetComponent<Pikachu>().useMove4();
+                moveType = currentOpponentPokemon.GetComponent<Pikachu>().getMove4Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Feraligatr")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Feraligatr>().getMove4();
+                movePower = currentOpponentPokemon.GetComponent<Feraligatr>().useMove4();
+                moveType = currentOpponentPokemon.GetComponent<Feraligatr>().getMove4Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Sceptile")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Sceptile>().getMove4();
+                movePower = currentOpponentPokemon.GetComponent<Sceptile>().useMove4();
+                moveType = currentOpponentPokemon.GetComponent<Sceptile>().getMove4Type();
+            }
+            else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Aerodactyl")
+            {
+                moveName = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove4();
+                movePower = currentOpponentPokemon.GetComponent<Aerodactyl>().useMove4();
+                moveType = currentOpponentPokemon.GetComponent<Aerodactyl>().getMove4Type();
+            }
+        }
+
+        // Get player pokemon damage and typing.
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            playerDefense = currentPlayerPokemon.GetComponent<Charizard>().getDefense();
+            playerPokemonType = currentPlayerPokemon.GetComponent<Charizard>().getType();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            playerDefense = currentPlayerPokemon.GetComponent<Gallade>().getDefense();
+            playerPokemonType = currentPlayerPokemon.GetComponent<Gallade>().getType();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            playerDefense = currentPlayerPokemon.GetComponent<Pikachu>().getDefense();
+            playerPokemonType = currentPlayerPokemon.GetComponent<Pikachu>().getType();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+            playerDefense = currentPlayerPokemon.GetComponent<Feraligatr>().getDefense();
+            playerPokemonType = currentPlayerPokemon.GetComponent<Feraligatr>().getType();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            playerDefense = currentPlayerPokemon.GetComponent<Sceptile>().getDefense();
+            playerPokemonType = currentPlayerPokemon.GetComponent<Sceptile>().getType();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            playerDefense = currentPlayerPokemon.GetComponent<Aerodactyl>().getDefense();
+            playerPokemonType = currentPlayerPokemon.GetComponent<Aerodactyl>().getType();
+        }
+
+        combatText.SetText(pokemonName + " used " + moveName);
+        yield return new WaitForSeconds(2);
+
+        if (movePower == 0)
+        {
+            combatText.SetText("It missed!");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+            yield break;
+        }
+
+        // If critical, multiply the damage by 1.5
+        if (random.Next(1, 100) <= 10)
+            isCritical = true;
+
+        // Calculate damage
+        int damage = ((movePower - playerDefense) * checkType(moveType, playerPokemonType)) / 2;
+
+        if (isCritical == true)
+            damage *= 3 / 2;
+
+        AIlowerHealth(damage);
+
+        // If critical, say it was critical
+        if (isCritical == true)
+        {
+            combatText.SetText("It's a critical hit!!");
+            yield return new WaitForSeconds(2);
+        }
+
+        // Check for type effectiveness
+        if (checkType(moveType, playerPokemonType) == 1)
+            combatText.SetText("It was not very effective.");
+        else if (checkType(moveType, playerPokemonType) == 2)
+            combatText.SetText("It was effective.");
+        else if (checkType(moveType, playerPokemonType) == 3)
+            combatText.SetText("It was super effective!!");
+
+        yield return new WaitForSeconds(2);
+        combatText.SetText("Your turn.");
+        yield return new WaitForSeconds(1);
+        combatText.SetText("");
+    }
+
+    private void AIlowerHealth(int damage)
+    {
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            currentPlayerPokemon.GetComponent<Charizard>().setHealth(currentPlayerPokemon.GetComponent<Charizard>().getHealth() - damage);
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            currentPlayerPokemon.GetComponent<Gallade>().setHealth(currentPlayerPokemon.GetComponent<Gallade>().getHealth() - damage);
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            currentPlayerPokemon.GetComponent<Pikachu>().setHealth(currentPlayerPokemon.GetComponent<Pikachu>().getHealth() - damage);
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+            currentPlayerPokemon.GetComponent<Feraligatr>().setHealth(currentPlayerPokemon.GetComponent<Feraligatr>().getHealth() - damage);
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            currentPlayerPokemon.GetComponent<Sceptile>().setHealth(currentPlayerPokemon.GetComponent<Sceptile>().getHealth() - damage);
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            currentPlayerPokemon.GetComponent<Aerodactyl>().setHealth(currentPlayerPokemon.GetComponent<Aerodactyl>().getHealth() - damage);
+        }
+
+        if (currentPlayerHealth - damage <= 0)
+        {
+            playerHealthBar.setHealth(0);
+            setCurrentPokemonHealth(0);
+
+            if (partyButton2.GetComponent<Image>().color == green)
+            {
+                swapParty2();
+            }
+            else if (partyButton3.GetComponent<Image>().color == green)
+            {
+                swapParty3();
+            }
+            else
+            {
+                StartCoroutine(lost());
+                SceneManager.LoadScene("Defeat");
+            }
+        }
+        else
+        {
+            playerHealthBar.setHealth(currentPlayerHealth - damage);            
+            currentPlayerHealth -= damage;
+            setCurrentPokemonHealth(currentPlayerHealth - damage);
+        }
+    }
+
+    IEnumerator lost()
+    {
+        combatText.SetText("Defeat...\nYou are out of pokemon.");
+        yield return new WaitForSeconds(2);
+    }
 }
-    

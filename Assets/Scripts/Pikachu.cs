@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pikachu : MonoBehaviour
 {
+    int maxHealth;
     int health;
     int attack;
     int defense;
@@ -38,9 +39,15 @@ public class Pikachu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = 1000;
         health = 1000;
         attack = 100;
         defense = 100;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 
     public int getHealth()
