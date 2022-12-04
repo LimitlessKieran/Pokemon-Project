@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009854072, g: 0.015714878, b: 0.013216707, a: 1}
+  m_IndirectSpecularColor: {r: 0.009839468, g: 0.01574407, b: 0.013197743, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -263,7 +263,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 389a7d418690a472796b26abd0a4ce07, type: 3}
@@ -331,7 +330,6 @@ PrefabInstance:
       value: StadiumFloor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 389a7d418690a472796b26abd0a4ce07, type: 3}
 --- !u!1 &106286730
 GameObject:
@@ -638,7 +636,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 723068872}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b11937adf453e74196542326a797348, type: 3}
@@ -702,7 +699,6 @@ PrefabInstance:
       value: Sceptile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b11937adf453e74196542326a797348, type: 3}
 --- !u!1 &338481785
 GameObject:
@@ -1069,7 +1065,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1235,7 +1230,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 723068872}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
@@ -1303,7 +1297,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
 --- !u!1 &626670188
 GameObject:
@@ -1887,8 +1880,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730883211}
-  m_LocalRotation: {x: 0.13167833, y: -0.255988, z: 0.0355368, w: 0.95701}
-  m_LocalPosition: {x: 43.076244, y: 43, z: -134}
+  m_LocalRotation: {x: -0.14674893, y: 0.47560412, z: -0.08078808, w: -0.86356163}
+  m_LocalPosition: {x: 83.09264, y: 34.623894, z: -76.23804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3720,7 +3713,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0a657ee857e514f4a856e707aba9044c, type: 3}
@@ -3784,7 +3776,6 @@ PrefabInstance:
       value: Stadium
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a657ee857e514f4a856e707aba9044c, type: 3}
 --- !u!1 &1423736517
 GameObject:
@@ -4263,7 +4254,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 723068872}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1a38963c9920e41f38390bdb42fc13f5, type: 3}
@@ -4327,7 +4317,6 @@ PrefabInstance:
       value: Gallade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a38963c9920e41f38390bdb42fc13f5, type: 3}
 --- !u!1 &1584601401
 GameObject:
@@ -5605,7 +5594,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 723068872}
     m_Modifications:
     - target: {fileID: -8687406305461622156, guid: 2cbfdbe420d7e4b0d96a3b54e83a4655, type: 3}
@@ -5673,7 +5661,6 @@ PrefabInstance:
       value: Pikachu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cbfdbe420d7e4b0d96a3b54e83a4655, type: 3}
 --- !u!1 &1857797164
 GameObject:
@@ -6481,7 +6468,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 723068872}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 218f9a7d16e0f4f98b5733e8d677a40f, type: 3}
@@ -6549,7 +6535,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 218f9a7d16e0f4f98b5733e8d677a40f, type: 3}
 --- !u!1 &1993933951
 GameObject:
@@ -7075,7 +7060,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 723068872}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fb345885d988bdc47975a0a9bfcb84e9, type: 3}
@@ -7139,5 +7123,4 @@ PrefabInstance:
       value: Feraligatr
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fb345885d988bdc47975a0a9bfcb84e9, type: 3}

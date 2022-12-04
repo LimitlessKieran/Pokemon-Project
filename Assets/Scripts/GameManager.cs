@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     public void LoadScene(string sceneName)
@@ -53,8 +52,7 @@ public class GameManager : MonoBehaviour
     public void selectStageForest()
     {
         isStageForest = true;
-        isStageNight = false;
-       
+        isStageNight = false;       
     }
 
     public void selectStageNight()
