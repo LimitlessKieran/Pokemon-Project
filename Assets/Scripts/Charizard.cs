@@ -38,7 +38,7 @@ public class Charizard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 10000;
+        health = 1000;
         attack = 100;
         defense = 100;
     }

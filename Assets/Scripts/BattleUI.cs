@@ -16,6 +16,11 @@ public class BattleUI : MonoBehaviour
     public int currentPlayerHealth;
     public int currentOpponentHealth;
 
+    public int potionCount;
+    public int xAttackCount;
+    public int shieldCount;
+    public int elixirCount;
+
     public GameObject currentPlayerPokemon;
     public GameObject currentOpponentPokemon;
 
@@ -23,6 +28,11 @@ public class BattleUI : MonoBehaviour
     GameObject attackButton2;
     GameObject attackButton3;
     GameObject attackButton4;
+
+    public GameObject choice1;
+    public GameObject choice2;
+    public GameObject choice3;
+    public GameObject choice4;
 
     TMP_Text attackButtonText1;
     TMP_Text attackButtonText2;
@@ -52,9 +62,12 @@ public class BattleUI : MonoBehaviour
 
     TMP_Text combatText;
 
-    public GameObject playerbag, go;
+    public GameObject battleManager, go;
 
     System.Random random = new System.Random();
+
+    // if the user has activated xAttack or shield item this will be true; 
+    public bool isDamageBoosted, isShieldActivated;
 
     Color gray = new Color32(133, 133, 133, 255);
     Color blue = new Color32(0, 38, 255, 255);
@@ -63,7 +76,13 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        isDamageBoosted = false;
+        isShieldActivated = false;
+
         go = GameObject.Find("TeamCreater");
+
+        battleManager = GameObject.Find("BattleManager");
 
         currentPlayerPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[0]);
         currentOpponentPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[0]);
@@ -74,7 +93,6 @@ public class BattleUI : MonoBehaviour
         opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
         opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
 
-        playerbag = GameObject.Find("BattleManager");
 
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
         opponentHealthBar = GameObject.Find("OpponentHealthBar").GetComponent<HealthBar>();
@@ -121,11 +139,16 @@ public class BattleUI : MonoBehaviour
 
         moveDisplay();
         ItemDisplay();
-        partyDisplay();        
+        partyDisplay();
 
         attackPanel.gameObject.SetActive(false);
         itemPanel.gameObject.SetActive(false);
         partyPanel.gameObject.SetActive(false);
+
+        potionCount = go.GetComponent<SelectPokemon>().Bag[0];
+        xAttackCount = go.GetComponent<SelectPokemon>().Bag[1];
+        shieldCount = go.GetComponent<SelectPokemon>().Bag[2];
+        elixirCount = go.GetComponent<SelectPokemon>().Bag[3];
     }
 
     // Update is called once per frame
@@ -201,10 +224,10 @@ public class BattleUI : MonoBehaviour
 
     public void ItemDisplay()
     {
-        itemButtonText1.SetText(playerbag.GetComponent<Bag>().displayItem1(go.GetComponent<SelectPokemon>().Bag[0]));
-        itemButtonText2.SetText(playerbag.GetComponent<Bag>().displayItem2(go.GetComponent<SelectPokemon>().Bag[1]));
-        itemButtonText3.SetText(playerbag.GetComponent<Bag>().displayItem3(go.GetComponent<SelectPokemon>().Bag[2]));
-        itemButtonText4.SetText(playerbag.GetComponent<Bag>().displayItem4(go.GetComponent<SelectPokemon>().Bag[3]));
+        itemButtonText1.SetText(go.GetComponent<Bag>().displayItem1(potionCount));
+        itemButtonText2.SetText(go.GetComponent<Bag>().displayItem2(xAttackCount));
+        itemButtonText3.SetText(go.GetComponent<Bag>().displayItem3(shieldCount));
+        itemButtonText4.SetText(go.GetComponent<Bag>().displayItem4(elixirCount));
     }
 
     public void partyDisplay()
@@ -340,13 +363,144 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void useItem()
+    public void useItem1()
     {
-        itemPanel.gameObject.SetActive(false);
-        
-        
+        StartCoroutine(usedPotion());
+
+    }
+    public void useItem2()
+    {
+        StartCoroutine(usedxAttack());
+    }
+    public void useItem3()
+    {
+        StartCoroutine(usedShield());
+    }
+    public void useItem4()
+    {
+        StartCoroutine(usedElixir());
     }
 
+    IEnumerator usedPotion()
+    {
+        itemPanel.gameObject.SetActive(false);
+
+        // check to see if the user has potions
+        if (potionCount > 0)
+        {
+            // check to see if the user has max health
+            if (currentPlayerHealth == 1000)
+            {
+                combatText.SetText("You have full health!!!");
+                yield return new WaitForSeconds(2);
+                combatText.SetText("");
+            }
+            else
+            {
+                // The potion is used 
+                combatText.SetText("A Potion was used!");
+                yield return new WaitForSeconds(2);
+                potionCount--;
+                ItemDisplay();
+
+                // increasing the current pokemons health
+                setCurrentPokemonHealth(currentPlayerHealth + 100);
+
+                combatText.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[0] + " HP was restored!");
+                yield return new WaitForSeconds(2);
+                combatText.SetText("");
+            }
+        }
+        else
+        {
+            combatText.SetText("You have no potions!!!");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+        }
+    }
+    IEnumerator usedxAttack()
+    {
+
+        itemPanel.gameObject.SetActive(false);
+        // check to see if the user already used an xattack
+        if (isDamageBoosted) {
+
+            combatText.SetText("Damage is already increased!!!");
+            yield return new WaitForSeconds(2);
+
+            combatText.SetText("Select a attack!!!");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+        }
+        else
+        {
+            // check to see if the user has any xattacks
+            if (xAttackCount > 0)
+            {
+                combatText.SetText("Your next attack damage has been increased!!");
+                yield return new WaitForSeconds(2);
+                xAttackCount--;
+                ItemDisplay();
+                combatText.SetText("");
+                isDamageBoosted = true;
+            }
+            else
+            {
+                // the user has no more xAttacks
+                combatText.SetText("You have no xAttacks!!!");
+                yield return new WaitForSeconds(2);
+                combatText.SetText("");
+            }
+        }
+
+
+
+    }
+    IEnumerator usedShield()
+    {
+        itemPanel.gameObject.SetActive(false);
+
+        if (isShieldActivated)
+        {
+            combatText.SetText("Shield is currently being used!!!");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+
+        }
+        else
+        {
+            if (shieldCount > 0)
+            {
+                shieldCount--;
+                ItemDisplay();
+                combatText.SetText("Shield has been activated");
+                isShieldActivated = true;
+                battleManager.GetComponent<BattleManager>().shieldActivated();
+                combatText.SetText("");
+            }
+            else
+            {
+                combatText.SetText("You have no shields!!!");
+                yield return new WaitForSeconds(2);
+                combatText.SetText("");
+            }
+        }
+
+    }
+
+    IEnumerator usedElixir()
+    { 
+    
+        if (elixirCount > 0)
+        {
+            elixirCount--;
+            ItemDisplay();
+            combatText.SetText("Which move would you like to restore?");
+            yield return new WaitForSeconds(2);
+        }
+      
+    }
+    
     public void swapPokemon2()
     {
         StartCoroutine(swapParty2());
@@ -859,8 +1013,20 @@ public class BattleUI : MonoBehaviour
         // Calculate damage
         int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
 
-        if (isCritical == true)
+        // if xAttack is used then 
+        if (isDamageBoosted)
+        {
             damage *= 3 / 2;
+        }
+
+        // after damage calcuations is done set it back to false; 
+        isDamageBoosted = false;
+
+        if (isCritical == true)
+        {
+            damage *= 3 / 2;
+        }
+            
 
         lowerHealth(damage);
 
@@ -993,7 +1159,18 @@ public class BattleUI : MonoBehaviour
         int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
 
         if (isCritical == true)
+        {
             damage *= 3 / 2;
+        }
+            
+        // if xAttack is used then 
+        if (isDamageBoosted)
+        {
+            damage *= 3 / 2;
+        }
+
+        // after damage calcuations is done set it back to false; 
+        isDamageBoosted = false;
 
         lowerHealth(damage);
 
@@ -1126,8 +1303,20 @@ public class BattleUI : MonoBehaviour
         // Calculate damage
         int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
 
-        if (isCritical == true)
+        // if xAttack is used then 
+        if (isDamageBoosted)
+        {
             damage *= 3 / 2;
+        }
+
+        // after damage calcuations is done set it back to false; 
+        isDamageBoosted = false;
+
+        if (isCritical == true)
+        {
+            damage *= 3 / 2;
+        }
+       
 
         lowerHealth(damage);
 
@@ -1260,10 +1449,24 @@ public class BattleUI : MonoBehaviour
         // Calculate damage
         int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
 
+        // if xAttack is used then 
+        if (isDamageBoosted)
+        {
+            damage *= 3/2;
+        }
+
+        // after damage calcuations is done set it back to false; 
+        isDamageBoosted = false;
+
         if (isCritical == true)
+        {
             damage *= 3 / 2;
+        }
+            
 
         lowerHealth(damage);
+
+    
 
         // If critical, say it was critical
         if (isCritical == true)
