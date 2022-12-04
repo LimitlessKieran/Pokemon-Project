@@ -225,7 +225,7 @@ public class SelectPokemon : MonoBehaviour
         allPokemon.Add("Aerodactyl");
         allPokemon.Add("Gallade");
 
-        for (int i = 0; i < allPokemon.Count - 1; i++)
+        for (int i = 0; i < allPokemon.Count; i++)
         {
             if (PokemonTeam.Contains(allPokemon[i]))
             {

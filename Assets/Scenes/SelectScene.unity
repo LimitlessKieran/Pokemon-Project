@@ -3358,11 +3358,13 @@ MonoBehaviour:
   ball2: {fileID: 21300000, guid: d6d7a3176ec01433997ff4b63f5265e3, type: 3}
   ball3: {fileID: 21300000, guid: 77ea3fc37a3ae4c27a130dd139b71776, type: 3}
   counter: 1
-  pokemon1: Charizard
+  pokemon1: 
   pokemon2: 
   pokemon3: 
   Instance: {fileID: 0}
   PokemonTeam: []
+  opponentTeam: []
+  allPokemon: []
   Bag: 
 --- !u!4 &788149032
 Transform:
