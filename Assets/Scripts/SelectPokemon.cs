@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class SelectPokemon : MonoBehaviour
 {
-    public GameObject pokemon;
+    // positions for the pokemon to be switched out or placed on the pedestal
     Vector3 pedestalPos = new Vector3(0.17f, -1.47f, 0.6f); //6868628
     Vector3 pedestalRotation = new Vector3(0f, 90f, 0f);
     Vector3 awayPosition = new Vector3(-946f, -1.47f, -205);
+
+    // Image variables
     Image image, image2, image3, backgroundimage;
+
+    // all GameObjects used
+    public GameObject pokemon;
     public GameObject battlebtn;
     public GameObject TeamCreater;
     public GameObject lockbtn, unlockbtn;
     public GameObject errortxt;
+
+    // Sprite Variables to change the sprite upon button select
     public Sprite c_Sprite;
     public Sprite s_Sprite;
     public Sprite f_Sprite;
@@ -21,24 +28,34 @@ public class SelectPokemon : MonoBehaviour
     public Sprite a_Sprite;
     public Sprite g_Sprite;
     public Sprite ball1, ball2, ball3;
+
+    // counter for the amount of pokemon that was selected
     public int counter = 1;
+
+    // String of the names of pokemon selected
     public string pokemon1;
     public string pokemon2;
     public string pokemon3;
+
     public SelectPokemon Instance;
 
+    // All the list used for keeping the Pokemon the user and opponent will have 
     public List<string> PokemonTeam = new List<string>();
     public List<string> opponentTeam = new List<string>();
     public List<string> allPokemon = new List<string>();
     public List<int> Bag = new List<int>();
 
+    // timer for error messages to pop up
     int seconds = 0;
     void Start()
     {
+        // referencing the images to display the user choices
         image = GameObject.FindWithTag("pokemon1").GetComponent<Image>();
         image2 = GameObject.FindWithTag("pokemon2").GetComponent<Image>();
         image3 = GameObject.FindWithTag("pokemon3").GetComponent<Image>();
         backgroundimage = GameObject.FindWithTag("backgroundimage").GetComponent<Image>();
+
+        // setting buttons and errortxt as disabled 
         lockbtn.SetActive(false);
         unlockbtn.SetActive(false);
         battlebtn.SetActive(false);
@@ -48,6 +65,7 @@ public class SelectPokemon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // The time for the error message to pop up 
         if (errortxt)
         {
             seconds++;
@@ -59,6 +77,8 @@ public class SelectPokemon : MonoBehaviour
 
         }
     }
+
+    // So The Game Object will not be destroyed so it can be accssed by different scripts in the stadium scenes
     private void Awake()
     {
         if (Instance == null)
@@ -71,11 +91,14 @@ public class SelectPokemon : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // This function will be used everytime a pokemon button is pressed to display that current pokemon and change on of the sprites 
     public void swapPlaces(string pokemonName, Sprite sprite)
     {
+
         if (pokemon != null)
         {
-
+            // if its not the first time a pokemon button is pressed
             if (counter == 1)
             {
                 image.sprite = sprite;
@@ -100,6 +123,7 @@ public class SelectPokemon : MonoBehaviour
             pokemon.transform.position = pedestalPos;
             pokemon.transform.eulerAngles = pedestalRotation;
         }
+        // if its the first time a pokemon button is pressed. 
         else
         {
             image.sprite = sprite;
