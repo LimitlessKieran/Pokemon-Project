@@ -6,17 +6,20 @@ using TMPro;
 public class BattleManager : MonoBehaviour
 {
     public GameObject go;
-    public GameObject myPokemon , opponentPokemon;   
+    public GameObject myPokemon , opponentPokemon, shield;   
 
     Vector3 yourTeamForest = new Vector3(42.59f, .009f, 44.98f); //6868628
     Vector3 oppTeamForest = new Vector3(25.4567f, 0.15f, 33.15f);
     Vector3 away = new Vector3(25.4567f, -20.0f, 33.15f);
+    Vector3 awayNight = new Vector3(70.4567f, -20.0f, 33.15f);
 
     Vector3 pivot = new Vector3(34f, 0f, 38f);
     Vector3 pivotNight = new Vector3(-5.22f, 0f, -28.03f);
 
     Vector3 yourTeamNight = new Vector3(-38.8f, 0f, -142.6f); //6868628
     Vector3 oppTeamNight = new Vector3(-36f, 0f, 9.8f);
+
+    Vector3 posShieldForest = new Vector3(39.67f, 2.32f, 44.78f);
 
     public static List<string> battleTeam = new List<string>();
 
@@ -29,9 +32,9 @@ public class BattleManager : MonoBehaviour
     {
         int count = 0;
         go = GameObject.Find("TeamCreater");
-   
+        
         battleTeam = go.GetComponent<SelectPokemon>().PokemonTeam;
-        Bag = go.GetComponent<SelectPokemon>().Bag;
+        
         stageSetting = GameObject.Find("GameManager");
 
         if (stageSetting)
@@ -83,15 +86,28 @@ public class BattleManager : MonoBehaviour
                 myPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[0]);
                 myPokemon.transform.position = yourTeamNight;
                 myPokemon.transform.LookAt(pivotNight);
-                GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[1]).transform.position = away;
-                GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[2]).transform.position = away;
+                GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[1]).transform.position = awayNight;
+                GameObject.Find(go.GetComponent<SelectPokemon>().PokemonTeam[2]).transform.position = awayNight;
 
                 opponentPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[0]);
                 opponentPokemon.transform.position = oppTeamNight;
                 opponentPokemon.transform.LookAt(pivotNight);
-                GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[1]).transform.position = away;
-                GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[2]).transform.position = away;
+                GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[1]).transform.position = awayNight;
+                GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[2]).transform.position = awayNight;
             }
         }
+    }
+
+    // function for placing the shield infront of your pokemon 
+    public void shieldActivated()
+    {
+        shield.transform.position = posShieldForest;
+      
+
+    }
+    public void shieldDeactivated()
+    {
+        shield.transform.position = away;
+
     }
 }
