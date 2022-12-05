@@ -160,6 +160,11 @@ public class BattleUI : MonoBehaviour
         xAttackCount = go.GetComponent<SelectPokemon>().Bag[1];
         shieldCount = go.GetComponent<SelectPokemon>().Bag[2];
         elixirCount = go.GetComponent<SelectPokemon>().Bag[3];
+
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        choice3.SetActive(false);
+        choice4.SetActive(false);
     }
 
     // Update is called once per frame
@@ -1126,7 +1131,19 @@ public class BattleUI : MonoBehaviour
         moveDisplay();
         checkMoves();
 
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
+        // if shield is activated then message will be blocked
+        if (isShieldActivated)
+        {
+            combatText.SetText("The shield blocked the move");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+            isShieldActivated = false;
+            battleManager.GetComponent<BattleManager>().shieldDeactivated();
+        }
+        else
+        {
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
+        }
     }
 
     IEnumerator move2()
