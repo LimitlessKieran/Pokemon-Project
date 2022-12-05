@@ -1586,7 +1586,9 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("That pokemon is already out.");
     }
 
+
     // **************AI**************
+
 
     IEnumerator AIfaint(int c)
     {
