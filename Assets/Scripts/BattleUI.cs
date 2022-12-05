@@ -104,8 +104,8 @@ public class BattleUI : MonoBehaviour
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
         opponentHealthBar = GameObject.Find("OpponentHealthBar").GetComponent<HealthBar>();
 
-        playerHealthBar.setMaxHealth(getCurrentPokemonHealth());
-        opponentHealthBar.setMaxHealth(getOpponentPokemonHealth());
+        playerHealthBar.setMaxHealth(getCurrentPokemonMaxHealth());
+        opponentHealthBar.setMaxHealth(getCurrentOpponentMaxHealth());
 
         currentOpponentHealth = getCurrentPokemonHealth();
         currentPlayerHealth = getOpponentPokemonHealth();
@@ -168,8 +168,8 @@ public class BattleUI : MonoBehaviour
         ItemDisplay();
         partyDisplay();
 
-        currentOpponentHealth = getCurrentPokemonHealth();
-        currentPlayerHealth = getOpponentPokemonHealth();
+        currentOpponentHealth = getOpponentPokemonHealth();
+        currentPlayerHealth = getCurrentPokemonHealth();
 
         if (getCurrentPokemonHealth() != 0)
             partyButton1.GetComponent<Image>().color = green;
@@ -728,6 +728,38 @@ public class BattleUI : MonoBehaviour
         }
     }
 
+    public int getCurrentOpponentMaxHealth()
+    {
+        int maxHealth = 0;
+
+        if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Charizard")
+        {
+            maxHealth = currentOpponentPokemon.GetComponent<Charizard>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Gallade")
+        {
+            maxHealth = currentOpponentPokemon.GetComponent<Gallade>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Pikachu")
+        {
+            maxHealth = currentOpponentPokemon.GetComponent<Pikachu>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Feraligatr")
+        {
+            maxHealth = currentOpponentPokemon.GetComponent<Feraligatr>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Sceptile")
+        {
+            maxHealth = currentOpponentPokemon.GetComponent<Sceptile>().getMaxHealth();
+        }
+        else if (go.GetComponent<SelectPokemon>().opponentTeam[0] == "Aerodactyl")
+        {
+            maxHealth = currentOpponentPokemon.GetComponent<Aerodactyl>().getMaxHealth();
+        }
+
+        return maxHealth;
+    }
+
     public int getOpponentPokemonHealth()
     {
         int currentHealth = 0;
@@ -910,6 +942,8 @@ public class BattleUI : MonoBehaviour
         if (partyButton2.GetComponent<Image>().color == gray)
         {
             combatText.SetText("This Pokemon has Fainted.");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
             yield break;
         }
 
@@ -947,6 +981,8 @@ public class BattleUI : MonoBehaviour
         if (partyButton3.GetComponent<Image>().color == gray)
         {
             combatText.SetText("This Pokemon has Fainted.");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
             yield break;
         }
 
@@ -1592,6 +1628,7 @@ public class BattleUI : MonoBehaviour
 
     IEnumerator AIfaint(int c)
     {
+        yield return new WaitForSeconds(2);
         combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + " has fainted.");
         yield return new WaitForSeconds(2);
 
@@ -1889,16 +1926,29 @@ public class BattleUI : MonoBehaviour
             if (partyButton2.GetComponent<Image>().color == green)
             {
                 swapPokemon2();
+
+                attackButtonMain.gameObject.SetActive(true);
+                itemButtonMain.gameObject.SetActive(true);
+                partyButtonMain.gameObject.SetActive(true);
+
+                yield break;
             }
             else if (partyButton3.GetComponent<Image>().color == green)
             {
                 swapPokemon3();
+
+                attackButtonMain.gameObject.SetActive(true);
+                itemButtonMain.gameObject.SetActive(true);
+                partyButtonMain.gameObject.SetActive(true);
+
+                yield break;
             }
             else
             {
                 StartCoroutine(lost());
                 yield return new WaitForSeconds(2);
                 SceneManager.LoadScene("Defeat");
+                yield return new WaitForSeconds(2);
                 yield break;
             }
         }
