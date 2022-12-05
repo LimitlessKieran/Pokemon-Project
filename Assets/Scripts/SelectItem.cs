@@ -40,7 +40,7 @@ public class SelectItem : MonoBehaviour
 
     public void onPotionSelect()
     {
-        if (potionCount < 5)
+        if (potionCount < 2)
         {
             clearbtn.SetActive(true);
             potionCount++;
@@ -54,7 +54,7 @@ public class SelectItem : MonoBehaviour
 
     public void onxAttackSelect()
     {
-        if (xAttackCount < 5)
+        if (xAttackCount < 2)
         {
             clearbtn.SetActive(true);
             xAttackCount++;
@@ -68,7 +68,7 @@ public class SelectItem : MonoBehaviour
 
     public void onShieldSelect()
     {
-        if (shieldCount < 5)
+        if (shieldCount < 2)
         {
             clearbtn.SetActive(true);
             shieldCount++;
@@ -82,7 +82,7 @@ public class SelectItem : MonoBehaviour
 
     public void onElixirSelect()
     {
-        if (elixirCount < 5)
+        if (elixirCount < 2)
         {
             clearbtn.SetActive(true);
             elixirCount++;

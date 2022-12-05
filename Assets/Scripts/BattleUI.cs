@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class BattleUI : MonoBehaviour
 {
-    int AIcounter;
-
     GameObject attackPanel;
     GameObject itemPanel;
     GameObject partyPanel;
@@ -27,10 +24,6 @@ public class BattleUI : MonoBehaviour
     public GameObject currentPlayerPokemon;
     public GameObject currentOpponentPokemon;
 
-    GameObject attackButtonMain;
-    GameObject itemButtonMain;
-    GameObject partyButtonMain;
-
     GameObject attackButton1;
     GameObject attackButton2;
     GameObject attackButton3;
@@ -40,6 +33,11 @@ public class BattleUI : MonoBehaviour
     public GameObject choice2;
     public GameObject choice3;
     public GameObject choice4;
+
+    TMP_Text choiceText1;
+    TMP_Text choiceText2;
+    TMP_Text choiceText3;
+    TMP_Text choiceText4;
 
     TMP_Text attackButtonText1;
     TMP_Text attackButtonText2;
@@ -83,8 +81,7 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AIcounter = 0;
-        
+
         isDamageBoosted = false;
         isShieldActivated = false;
 
@@ -101,6 +98,7 @@ public class BattleUI : MonoBehaviour
         opponentPokemonName = GameObject.Find("OpponentName").GetComponent<TMP_Text>();
         opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
 
+
         playerHealthBar = GameObject.Find("PlayerHealthBar").GetComponent<HealthBar>();
         opponentHealthBar = GameObject.Find("OpponentHealthBar").GetComponent<HealthBar>();
 
@@ -109,10 +107,6 @@ public class BattleUI : MonoBehaviour
 
         currentOpponentHealth = getCurrentPokemonHealth();
         currentPlayerHealth = getOpponentPokemonHealth();
-
-        attackButtonMain = GameObject.Find("AttackButton");
-        itemButtonMain = GameObject.Find("BagButton");
-        partyButtonMain = GameObject.Find("SwapButton");
 
         attackButton1 = GameObject.Find("Move1");
         attackButton2 = GameObject.Find("Move2");
@@ -123,6 +117,11 @@ public class BattleUI : MonoBehaviour
         attackButtonText2 = GameObject.Find("MoveText2").GetComponent<TMP_Text>();
         attackButtonText3 = GameObject.Find("MoveText3").GetComponent<TMP_Text>();
         attackButtonText4 = GameObject.Find("MoveText4").GetComponent<TMP_Text>();
+
+        choiceText1 = GameObject.Find("choice1txt").GetComponent<TMP_Text>();
+        choiceText2 = GameObject.Find("choice2txt").GetComponent<TMP_Text>();
+        choiceText3 = GameObject.Find("choice3txt").GetComponent<TMP_Text>();
+        choiceText4 = GameObject.Find("choice4txt").GetComponent<TMP_Text>();
 
         itemButton1 = GameObject.Find("Item1");
         itemButton2 = GameObject.Find("Item2");
@@ -155,6 +154,11 @@ public class BattleUI : MonoBehaviour
         attackPanel.gameObject.SetActive(false);
         itemPanel.gameObject.SetActive(false);
         partyPanel.gameObject.SetActive(false);
+
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        choice3.SetActive(false);
+        choice4.SetActive(false);
 
         potionCount = go.GetComponent<SelectPokemon>().Bag[0];
         xAttackCount = go.GetComponent<SelectPokemon>().Bag[1];
@@ -365,8 +369,6 @@ public class BattleUI : MonoBehaviour
         {
             opponentHealthBar.setHealth(0);
             setOpponentPokemonHealth(0);
-            AIcounter++;
-            StartCoroutine(AIfaint(AIcounter));
         }
         else
         {
@@ -379,18 +381,16 @@ public class BattleUI : MonoBehaviour
     public void useItem1()
     {
         StartCoroutine(usedPotion());
-    }
 
+    }
     public void useItem2()
     {
         StartCoroutine(usedxAttack());
     }
-
     public void useItem3()
     {
         StartCoroutine(usedShield());
     }
-
     public void useItem4()
     {
         StartCoroutine(usedElixir());
@@ -433,7 +433,6 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("");
         }
     }
-
     IEnumerator usedxAttack()
     {
 
@@ -468,8 +467,10 @@ public class BattleUI : MonoBehaviour
                 combatText.SetText("");
             }
         }
-    }
 
+
+
+    }
     IEnumerator usedShield()
     {
         itemPanel.gameObject.SetActive(false);
@@ -499,16 +500,98 @@ public class BattleUI : MonoBehaviour
                 combatText.SetText("");
             }
         }
+
     }
 
     IEnumerator usedElixir()
     {
+        string moveName1 = "",moveName2 = "",moveName3 = "",moveName4 = "";
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Charizard>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Charizard>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Charizard>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Charizard>().getMove4();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Gallade>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Gallade>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Gallade>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Gallade>().getMove4();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Pikachu>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Pikachu>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Pikachu>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Pikachu>().getMove4();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove4();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Sceptile>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Sceptile>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Sceptile>().getMove2();
+            moveName4 = currentPlayerPokemon.GetComponent<Sceptile>().getMove3();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove4();
+        }
+
         if (elixirCount > 0)
         {
             elixirCount--;
             ItemDisplay();
             combatText.SetText("Which move would you like to restore?");
+
+
+            if (attackButton1.GetComponent<Image>().color == gray)
+            {
+                choice1.SetActive(true);
+                choiceText1.SetText(moveName1);
+
+            }
+            if (attackButton2.GetComponent<Image>().color == gray)
+            {
+                choice2.SetActive(true);
+
+                choiceText2.SetText(moveName2);
+
+            }
+            if (attackButton3.GetComponent<Image>().color == gray)
+            {
+                choice3.SetActive(true);
+
+                choiceText3.SetText(moveName3);
+
+            }
+            if (attackButton4.GetComponent<Image>().color == gray)
+            {
+                choice4.SetActive(true);
+                choiceText4.SetText(moveName4);
+
+
+            }
+        }
+
+        else
+        {
+            combatText.SetText("You have no elixirs!!!");
             yield return new WaitForSeconds(2);
+            combatText.SetText("");
         }
     }
 
@@ -548,15 +631,11 @@ public class BattleUI : MonoBehaviour
             return 1;
         else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.FIGHTING)
             return 3;
-        else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.GRASS)
-            return 3;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.ELECTRIC)
             return 1;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.FIGHTING)
             return 1;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.FLYING)
-            return 3;
-        else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.WATER)
             return 3;
         else if (moveType == GameManager.Type.FIGHTING && opponentType == GameManager.Type.FIGHTING)
             return 1;
@@ -634,38 +713,6 @@ public class BattleUI : MonoBehaviour
         }
 
         return currentHealth;
-    }
-
-    public int getCurrentPokemonMaxHealth()
-    {
-        int maxHealth = 0;
-
-        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
-        {
-            maxHealth = currentPlayerPokemon.GetComponent<Charizard>().getMaxHealth();
-        }
-        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
-        {
-            maxHealth = currentPlayerPokemon.GetComponent<Gallade>().getMaxHealth();
-        }
-        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
-        {
-            maxHealth = currentPlayerPokemon.GetComponent<Pikachu>().getMaxHealth();
-        }
-        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
-        {
-            maxHealth = currentPlayerPokemon.GetComponent<Feraligatr>().getMaxHealth();
-        }
-        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
-        {
-            maxHealth = currentPlayerPokemon.GetComponent<Sceptile>().getMaxHealth();
-        }
-        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
-        {
-            maxHealth = currentPlayerPokemon.GetComponent<Aerodactyl>().getMaxHealth();
-        }
-
-        return maxHealth;
     }
 
     public int getCurrentPokemonHealth()
@@ -907,15 +954,6 @@ public class BattleUI : MonoBehaviour
     }
     IEnumerator swapParty2()
     {
-        if (partyButton2.GetComponent<Image>().color == gray)
-        {
-            combatText.SetText("This Pokemon has Fainted.");
-            yield break;
-        }
-
-        attackButtonMain.gameObject.SetActive(false);
-        itemButtonMain.gameObject.SetActive(false);
-        partyButtonMain.gameObject.SetActive(false);
         partyPanel.gameObject.SetActive(false);
 
         combatText.SetText("Come back " + go.GetComponent<SelectPokemon>().PokemonTeam[0] + "!");
@@ -934,25 +972,12 @@ public class BattleUI : MonoBehaviour
         yield return new WaitForSeconds(2);
         combatText.SetText("");
 
-        playerHealthBar.setMaxHealth(getCurrentPokemonMaxHealth());
-        playerHealthBar.setHealth(getCurrentPokemonHealth());
         moveDisplay();
         checkMoves();
-
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator swapParty3()
     {
-        if (partyButton3.GetComponent<Image>().color == gray)
-        {
-            combatText.SetText("This Pokemon has Fainted.");
-            yield break;
-        }
-
-        attackButtonMain.gameObject.SetActive(false);
-        itemButtonMain.gameObject.SetActive(false);
-        partyButtonMain.gameObject.SetActive(false);
         partyPanel.gameObject.SetActive(false);
 
         combatText.SetText("Come back " + go.GetComponent<SelectPokemon>().PokemonTeam[0] + "!");
@@ -971,12 +996,8 @@ public class BattleUI : MonoBehaviour
         yield return new WaitForSeconds(2);
         combatText.SetText("");
 
-        playerHealthBar.setMaxHealth(getCurrentPokemonMaxHealth());
-        playerHealthBar.setHealth(getCurrentPokemonHealth());
         moveDisplay();
         checkMoves();
-
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move1()
@@ -989,9 +1010,6 @@ public class BattleUI : MonoBehaviour
         }
 
         bool isCritical = false;
-        attackButtonMain.gameObject.SetActive(false);
-        itemButtonMain.gameObject.SetActive(false);
-        partyButtonMain.gameObject.SetActive(false);
         attackPanel.gameObject.SetActive(false);
 
         string pokemonName = go.GetComponent<SelectPokemon>().PokemonTeam[0];
@@ -1079,7 +1097,6 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
             yield break;
         }
 
@@ -1104,6 +1121,7 @@ public class BattleUI : MonoBehaviour
             damage *= 3 / 2;
         }
 
+
         lowerHealth(damage);
 
         // If critical, say it was critical
@@ -1125,8 +1143,6 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
-
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move2()
@@ -1139,9 +1155,6 @@ public class BattleUI : MonoBehaviour
         }
 
         bool isCritical = false;
-        attackButtonMain.gameObject.SetActive(false);
-        itemButtonMain.gameObject.SetActive(false);
-        partyButtonMain.gameObject.SetActive(false);        
         attackPanel.gameObject.SetActive(false);
 
         string pokemonName = go.GetComponent<SelectPokemon>().PokemonTeam[0];
@@ -1229,7 +1242,6 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
             yield break;
         }
 
@@ -1275,8 +1287,6 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
-
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move3()
@@ -1289,9 +1299,6 @@ public class BattleUI : MonoBehaviour
         }
 
         bool isCritical = false;
-        attackButtonMain.gameObject.SetActive(false);
-        itemButtonMain.gameObject.SetActive(false);
-        partyButtonMain.gameObject.SetActive(false);
         attackPanel.gameObject.SetActive(false);
 
         string pokemonName = go.GetComponent<SelectPokemon>().PokemonTeam[0];
@@ -1380,7 +1387,6 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
             yield break;
         }
 
@@ -1405,6 +1411,7 @@ public class BattleUI : MonoBehaviour
             damage *= 3 / 2;
         }
 
+
         lowerHealth(damage);
 
         // If critical, say it was critical
@@ -1426,8 +1433,6 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
-
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     IEnumerator move4()
@@ -1440,9 +1445,6 @@ public class BattleUI : MonoBehaviour
         }
 
         bool isCritical = false;
-        attackButtonMain.gameObject.SetActive(false);
-        itemButtonMain.gameObject.SetActive(false);
-        partyButtonMain.gameObject.SetActive(false);
         attackPanel.gameObject.SetActive(false);
 
         string pokemonName = go.GetComponent<SelectPokemon>().PokemonTeam[0];
@@ -1531,7 +1533,6 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
             yield break;
         }
 
@@ -1556,7 +1557,10 @@ public class BattleUI : MonoBehaviour
             damage *= 3 / 2;
         }
 
+
         lowerHealth(damage);
+
+
 
         // If critical, say it was critical
         if (isCritical == true)
@@ -1574,11 +1578,9 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was super effective!!");
 
         yield return new WaitForSeconds(2);
-        combatText.SetText("Your turn");
+        combatText.SetText("");
         moveDisplay();
         checkMoves();
-
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
     }
 
     public void clickParty1()
