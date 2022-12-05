@@ -1079,7 +1079,7 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
             yield break;
         }
 
@@ -1229,7 +1229,7 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
             yield break;
         }
 
@@ -1380,7 +1380,7 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
             yield break;
         }
 
@@ -1531,7 +1531,7 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
-            AIuseMove(random.Next(1, 5));
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
             yield break;
         }
 
