@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0054672165, g: 0.020076044, b: 0.004604739, a: 1}
+  m_IndirectSpecularColor: {r: 0.005478822, g: 0.02006374, b: 0.0046174107, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,7 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -991,6 +990,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2cbfdbe420d7e4b0d96a3b54e83a4655, type: 3}
@@ -1054,6 +1054,7 @@ PrefabInstance:
       value: PikachuM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cbfdbe420d7e4b0d96a3b54e83a4655, type: 3}
 --- !u!1 &1032271858
 GameObject:
@@ -1211,6 +1212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1137044860}
   - component: {fileID: 1137044859}
+  - component: {fileID: 1137044861}
   m_Layer: 0
   m_Name: Destroy
   m_TagString: Untagged
@@ -1246,11 +1248,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1137044861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137044858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be15dfe7e3cc494499513d80bcbda6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: TeamCreater
 --- !u!1001 &1286448329
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 218f9a7d16e0f4f98b5733e8d677a40f, type: 3}
@@ -1302,6 +1318,7 @@ PrefabInstance:
       value: Aerodactyl
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 218f9a7d16e0f4f98b5733e8d677a40f, type: 3}
 --- !u!1 &1352350633
 GameObject:
@@ -1580,6 +1597,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1cd622c953fc5495cb56bcf11e127597, type: 3}
@@ -1647,6 +1665,7 @@ PrefabInstance:
       value: Feraligatr
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cd622c953fc5495cb56bcf11e127597, type: 3}
 --- !u!1 &1632153763
 GameObject:
@@ -1837,6 +1856,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2049,6 +2069,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
@@ -2100,6 +2121,7 @@ PrefabInstance:
       value: Charizard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
 --- !u!1 &1740430844
 GameObject:
@@ -2548,6 +2570,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b11937adf453e74196542326a797348, type: 3}
@@ -2599,12 +2622,14 @@ PrefabInstance:
       value: Sceptile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b11937adf453e74196542326a797348, type: 3}
 --- !u!1001 &2038044766
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1a38963c9920e41f38390bdb42fc13f5, type: 3}
@@ -2660,4 +2685,5 @@ PrefabInstance:
       value: Gallade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a38963c9920e41f38390bdb42fc13f5, type: 3}

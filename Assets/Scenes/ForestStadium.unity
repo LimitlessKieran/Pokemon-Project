@@ -830,7 +830,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164871611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1882391135}
+        m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
+        m_MethodName: refill4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &164871611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +974,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainScene
+          m_StringArgument: Defeat
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &200882627
@@ -4166,15 +4178,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9102124319277480929, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.26
+      value: 39.67
       objectReference: {fileID: 0}
     - target: {fileID: 9102124319277480929, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.49
+      value: -32.4
       objectReference: {fileID: 0}
     - target: {fileID: 9102124319277480929, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.76
+      value: 44.78
       objectReference: {fileID: 0}
     - target: {fileID: 9102124319277480929, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4212,20 +4224,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8773506509589169082, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
   m_PrefabInstance: {fileID: 929050418}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &929050420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929050419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdbc56d6518b30b48b2f29adac000dc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1955376043}
-  speed: 0.07
 --- !u!1 &931455125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,7 +4627,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 996458584}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1882391135}
+        m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
+        m_MethodName: refill3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &996458584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5721,7 +5731,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1294543936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1882391135}
+        m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
+        m_MethodName: refill1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1294543936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7973,7 +7995,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1889869018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1882391135}
+        m_TargetAssemblyTypeName: BattleUI, Assembly-CSharp
+        m_MethodName: refill2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1889869018
 MonoBehaviour:
   m_ObjectHideFlags: 0

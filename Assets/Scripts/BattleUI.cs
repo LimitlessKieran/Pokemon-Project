@@ -41,6 +41,12 @@ public class BattleUI : MonoBehaviour
     public GameObject choice3;
     public GameObject choice4;
 
+    TMP_Text choiceText1;
+    TMP_Text choiceText2;
+    TMP_Text choiceText3;
+    TMP_Text choiceText4;
+
+
     TMP_Text attackButtonText1;
     TMP_Text attackButtonText2;
     TMP_Text attackButtonText3;
@@ -123,6 +129,11 @@ public class BattleUI : MonoBehaviour
         attackButtonText2 = GameObject.Find("MoveText2").GetComponent<TMP_Text>();
         attackButtonText3 = GameObject.Find("MoveText3").GetComponent<TMP_Text>();
         attackButtonText4 = GameObject.Find("MoveText4").GetComponent<TMP_Text>();
+
+        choiceText1 = GameObject.Find("choice1txt").GetComponent<TMP_Text>();
+        choiceText2 = GameObject.Find("choice2txt").GetComponent<TMP_Text>();
+        choiceText3 = GameObject.Find("choice3txt").GetComponent<TMP_Text>();
+        choiceText4 = GameObject.Find("choice4txt").GetComponent<TMP_Text>();
 
         itemButton1 = GameObject.Find("Item1");
         itemButton2 = GameObject.Find("Item2");
@@ -508,13 +519,305 @@ public class BattleUI : MonoBehaviour
 
     IEnumerator usedElixir()
     {
+        string moveName1 = "", moveName2 = "", moveName3 = "", moveName4 = "";
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Charizard>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Charizard>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Charizard>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Charizard>().getMove4();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Gallade>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Gallade>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Gallade>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Gallade>().getMove4();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Pikachu>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Pikachu>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Pikachu>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Pikachu>().getMove4();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove4();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Sceptile>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Sceptile>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Sceptile>().getMove2();
+            moveName4 = currentPlayerPokemon.GetComponent<Sceptile>().getMove3();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            moveName1 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove1();
+            moveName2 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove2();
+            moveName3 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove3();
+            moveName4 = currentPlayerPokemon.GetComponent<Aerodactyl>().getMove4();
+        }
+
         if (elixirCount > 0)
         {
             elixirCount--;
             ItemDisplay();
             combatText.SetText("Which move would you like to restore?");
-            yield return new WaitForSeconds(2);
+
+
+            if (attackButton1.GetComponent<Image>().color == gray)
+            {
+                choice1.SetActive(true);
+                choiceText1.SetText(moveName1);
+                
+
+            }
+            if (attackButton2.GetComponent<Image>().color == gray)
+            {
+                choice2.SetActive(true);
+
+                choiceText2.SetText(moveName2);
+
+            }
+            if (attackButton3.GetComponent<Image>().color == gray)
+            {
+                choice3.SetActive(true);
+
+                choiceText3.SetText(moveName3);
+
+            }
+            if (attackButton4.GetComponent<Image>().color == gray)
+            {
+                choice4.SetActive(true);
+                choiceText4.SetText(moveName4);
+
+
+            }
         }
+
+        else
+        {
+            combatText.SetText("You have no elixirs!!!");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+        }
+
+    }
+
+    public void refill1()
+    {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        choice3.SetActive(false);
+        choice4.SetActive(false);
+
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            currentPlayerPokemon.GetComponent<Charizard>().reset1Uses();
+            attackButton1.GetComponent<Image>().color = blue;
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            currentPlayerPokemon.GetComponent<Gallade>().reset1Uses();
+            attackButton1.GetComponent<Image>().color = blue;
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            currentPlayerPokemon.GetComponent<Pikachu>().reset1Uses();
+            attackButton1.GetComponent<Image>().color = blue;
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+
+            currentPlayerPokemon.GetComponent<Feraligatr>().reset1Uses();
+            attackButton1.GetComponent<Image>().color = blue;
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            currentPlayerPokemon.GetComponent<Sceptile>().reset1Uses();
+            attackButton1.GetComponent<Image>().color = blue;
+            moveDisplay();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            currentPlayerPokemon.GetComponent<Aerodactyl>().reset1Uses();
+            attackButton1.GetComponent<Image>().color = blue;
+            moveDisplay();
+        }
+
+    }
+
+    public void refill2()
+    {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        choice3.SetActive(false);
+        choice4.SetActive(false);
+
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            currentPlayerPokemon.GetComponent<Charizard>().reset2Uses();
+            attackButton2.GetComponent<Image>().color = blue;
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            currentPlayerPokemon.GetComponent<Gallade>().reset2Uses();
+            attackButton2.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            currentPlayerPokemon.GetComponent<Pikachu>().reset2Uses();
+            attackButton2.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+
+            currentPlayerPokemon.GetComponent<Feraligatr>().reset2Uses();
+            attackButton2.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            currentPlayerPokemon.GetComponent<Sceptile>().reset2Uses();
+            attackButton2.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            currentPlayerPokemon.GetComponent<Aerodactyl>().reset2Uses();
+            attackButton2.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+
+    }
+
+    public void refill3()
+    {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        choice3.SetActive(false);
+        choice4.SetActive(false);
+
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            currentPlayerPokemon.GetComponent<Charizard>().reset3Uses();
+            attackButton3.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            currentPlayerPokemon.GetComponent<Gallade>().reset3Uses();
+            attackButton3.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            currentPlayerPokemon.GetComponent<Pikachu>().reset3Uses();
+            attackButton3.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+
+            currentPlayerPokemon.GetComponent<Feraligatr>().reset3Uses();
+            attackButton3.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            currentPlayerPokemon.GetComponent<Sceptile>().reset3Uses();
+            attackButton3.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            currentPlayerPokemon.GetComponent<Aerodactyl>().reset3Uses();
+            attackButton3.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+
+    }
+
+    public void refill4()
+    {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+        choice3.SetActive(false);
+        choice4.SetActive(false);
+
+        if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
+        {
+            currentPlayerPokemon.GetComponent<Charizard>().reset4Uses();
+            attackButton4.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
+        {
+            currentPlayerPokemon.GetComponent<Gallade>().reset4Uses();
+            attackButton4.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
+        {
+            currentPlayerPokemon.GetComponent<Pikachu>().reset4Uses();
+            attackButton4.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
+        {
+
+            currentPlayerPokemon.GetComponent<Feraligatr>().reset4Uses();
+            attackButton4.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
+        {
+            currentPlayerPokemon.GetComponent<Sceptile>().reset4Uses();
+            attackButton4.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+
+        }
+        else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
+        {
+            currentPlayerPokemon.GetComponent<Aerodactyl>().reset4Uses();
+            attackButton4.GetComponent<Image>().color = blue;
+
+            moveDisplay();
+        }
+
     }
 
     public void swapPokemon2()
@@ -1175,6 +1478,15 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("");
             isShieldActivated = false;
             battleManager.GetComponent<BattleManager>().shieldDeactivated();
+
+            yield return new WaitForSeconds(2);
+            combatText.SetText("Your turn.");
+            yield return new WaitForSeconds(1);
+            combatText.SetText("");
+
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
         }
         else
         {
@@ -1328,8 +1640,28 @@ public class BattleUI : MonoBehaviour
         combatText.SetText("");
         moveDisplay();
         checkMoves();
+        if (isShieldActivated)
+        {
+            combatText.SetText("The shield blocked the move");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+            isShieldActivated = false;
+            battleManager.GetComponent<BattleManager>().shieldDeactivated();
 
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
+            yield return new WaitForSeconds(2);
+            combatText.SetText("Your turn.");
+            yield return new WaitForSeconds(1);
+            combatText.SetText("");
+
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
+        }
+      
     }
 
     IEnumerator move3()
@@ -1480,7 +1812,27 @@ public class BattleUI : MonoBehaviour
         moveDisplay();
         checkMoves();
 
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
+        if (isShieldActivated)
+        {
+            combatText.SetText("The shield blocked the move");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+            isShieldActivated = false;
+            battleManager.GetComponent<BattleManager>().shieldDeactivated();
+
+            yield return new WaitForSeconds(2);
+            combatText.SetText("Your turn.");
+            yield return new WaitForSeconds(1);
+            combatText.SetText("");
+
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
+        }
     }
 
     IEnumerator move4()
@@ -1631,7 +1983,27 @@ public class BattleUI : MonoBehaviour
         moveDisplay();
         checkMoves();
 
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
+        if (isShieldActivated)
+        {
+            combatText.SetText("The shield blocked the move");
+            yield return new WaitForSeconds(2);
+            combatText.SetText("");
+            isShieldActivated = false;
+            battleManager.GetComponent<BattleManager>().shieldDeactivated();
+
+            yield return new WaitForSeconds(2);
+            combatText.SetText("Your turn.");
+            yield return new WaitForSeconds(1);
+            combatText.SetText("");
+
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
+        }
     }
 
     public void clickParty1()

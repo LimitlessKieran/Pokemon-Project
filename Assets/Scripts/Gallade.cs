@@ -107,7 +107,10 @@ public class Gallade : MonoBehaviour
     {
         return move1Uses;
     }
-
+    public int reset1Uses()
+    {
+        return move1Uses = 5;
+    }
     public GameManager.Type getMove1Type()
     {
         return move1Type;
@@ -145,7 +148,10 @@ public class Gallade : MonoBehaviour
     {
         return move2Uses;
     }
-
+    public int reset2Uses()
+    {
+        return move2Uses = 20;
+    }
 
     public GameManager.Type getMove2Type()
     {
@@ -185,7 +191,10 @@ public class Gallade : MonoBehaviour
     {
         return move3Uses;
     }
-
+    public int reset3Uses()
+    {
+        return move3Uses = 20;
+    }
     public GameManager.Type getMove3Type()
     {
         return move3Type;
@@ -223,7 +232,10 @@ public class Gallade : MonoBehaviour
     {
         return move4Uses;
     }
-
+    public int reset4Uses()
+    {
+        return move4Uses = 1;
+    }
     public GameManager.Type getMove4Type()
     {
         return move4Type;

@@ -93,7 +93,10 @@ public class Feraligatr : MonoBehaviour
 
         return damage;
     }
-
+    public int reset1Uses()
+    {
+        return move1Uses = 3;
+    }
     public string displayMove1()
     {
         return move1Name + "\n" +
@@ -145,7 +148,10 @@ public class Feraligatr : MonoBehaviour
     {
         return move2Uses;
     }
-
+    public int reset2Uses()
+    {
+        return move2Uses = 20;
+    }
 
     public GameManager.Type getMove2Type()
     {
@@ -185,7 +191,10 @@ public class Feraligatr : MonoBehaviour
     {
         return move3Uses;
     }
-
+    public int reset3Uses()
+    {
+        return move3Uses = 10;
+    }
     public GameManager.Type getMove3Type()
     {
         return move3Type;
@@ -223,7 +232,10 @@ public class Feraligatr : MonoBehaviour
     {
         return move4Uses;
     }
-
+    public int reset4Uses()
+    {
+        return move4Uses = 2;
+    }
     public GameManager.Type getMove4Type()
     {
         return move4Type;

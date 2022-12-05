@@ -96,13 +96,14 @@ public class BattleManager : MonoBehaviour
                 GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[2]).transform.position = awayNight;
             }
         }
+        shield.transform.RotateAround(myPokemon.transform.position, myPokemon.transform.up, .2f + Time.deltaTime);
     }
 
     // function for placing the shield infront of your pokemon 
     public void shieldActivated()
     {
         shield.transform.position = posShieldForest;
-      
+   
 
     }
     public void shieldDeactivated()
