@@ -5,7 +5,7 @@ using UnityEngine;
 public class Charizard : MonoBehaviour
 {
     int maxHealth;
-    int health;
+    public int health;
     int attack;
     int defense;
     GameManager.Type type = GameManager.Type.FIRE;
@@ -41,8 +41,8 @@ public class Charizard : MonoBehaviour
     {
         maxHealth = 1000;
         health = 1000;
-        attack = 100;
-        defense = 100;
+        attack = 120;
+        defense = 90;
     }
 
     public int getMaxHealth()

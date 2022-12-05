@@ -5,7 +5,7 @@ using UnityEngine;
 public class Feraligatr : MonoBehaviour
 {
     int maxHealth;
-    int health;
+    public int health;
     int attack;
     int defense;
     GameManager.Type type = GameManager.Type.WATER;
@@ -18,13 +18,13 @@ public class Feraligatr : MonoBehaviour
 
     string move2Name = "Metal Claw";
     int move2Uses = 10;
-    int move2Power = 50;
+    int move2Power = 60;
     int move2Accuracy = 95;
-    GameManager.Type move2Type = GameManager.Type.NORMAL;
+    GameManager.Type move2Type = GameManager.Type.FIGHTING;
 
     string move3Name = "Ice Fang";
     int move3Uses = 10;
-    int move3Power = 65;
+    int move3Power = 70;
     int move3Accuracy = 95;
     GameManager.Type move3Type = GameManager.Type.NORMAL;
 
@@ -41,8 +41,8 @@ public class Feraligatr : MonoBehaviour
     {
         maxHealth = 1000;
         health = 1000;
-        attack = 100;
-        defense = 100;
+        attack = 95;
+        defense = 110;
     }
 
     public int getMaxHealth()

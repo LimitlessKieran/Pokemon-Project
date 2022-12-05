@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sceptile : MonoBehaviour
 {
     int maxHealth;
-    int health;
+    public int health;
     int attack;
     int defense;
     GameManager.Type type = GameManager.Type.GRASS;
@@ -41,8 +41,8 @@ public class Sceptile : MonoBehaviour
     {
         maxHealth = 1000;
         health = 1000;
-        attack = 100;
-        defense = 100;
+        attack = 90;
+        defense = 120;
     }
 
     public int getMaxHealth()

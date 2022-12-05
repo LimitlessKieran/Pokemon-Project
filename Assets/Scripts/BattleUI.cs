@@ -382,13 +382,11 @@ public class BattleUI : MonoBehaviour
             opponentHealthBar.setHealth(0);
             setOpponentPokemonHealth(0);
             AIcounter++;
-            StartCoroutine(AIfaint(AIcounter));
         }
         else
         {
-            opponentHealthBar.setHealth(currentOpponentHealth - damage);
-            currentOpponentHealth -= damage;
-            setOpponentPokemonHealth(currentOpponentHealth - damage);
+            currentOpponentHealth -= damage;            
+            opponentHealthBar.setHealth(currentOpponentHealth);
         }
     }
 
@@ -435,7 +433,12 @@ public class BattleUI : MonoBehaviour
                 ItemDisplay();
 
                 // increasing the current pokemons health
-                setCurrentPokemonHealth(currentPlayerHealth + 100);
+                if (currentPlayerHealth + 300 >= 1000)
+                    currentPlayerHealth = 1000;
+                else
+                    currentPlayerHealth += 300;
+                setCurrentPokemonHealth(currentPlayerHealth);
+                playerHealthBar.setHealth(currentPlayerHealth);
 
                 combatText.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[0] + " HP was restored!");
                 yield return new WaitForSeconds(2);
@@ -460,7 +463,7 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("Damage is already increased!!!");
             yield return new WaitForSeconds(2);
 
-            combatText.SetText("Select a attack!!!");
+            combatText.SetText("Select an attack!!!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
         }
@@ -469,7 +472,7 @@ public class BattleUI : MonoBehaviour
             // check to see if the user has any xattacks
             if (xAttackCount > 0)
             {
-                combatText.SetText("Your next attack damage has been increased!!");
+                combatText.SetText("Your next attack's damage has been increased!!");
                 yield return new WaitForSeconds(2);
                 xAttackCount--;
                 ItemDisplay();
@@ -547,7 +550,6 @@ public class BattleUI : MonoBehaviour
             moveName2 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove2();
             moveName3 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove3();
             moveName4 = currentPlayerPokemon.GetComponent<Feraligatr>().getMove4();
-
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
         {
@@ -555,7 +557,6 @@ public class BattleUI : MonoBehaviour
             moveName2 = currentPlayerPokemon.GetComponent<Sceptile>().getMove2();
             moveName3 = currentPlayerPokemon.GetComponent<Sceptile>().getMove2();
             moveName4 = currentPlayerPokemon.GetComponent<Sceptile>().getMove3();
-
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
         {
@@ -571,44 +572,35 @@ public class BattleUI : MonoBehaviour
             ItemDisplay();
             combatText.SetText("Which move would you like to restore?");
 
-
             if (attackButton1.GetComponent<Image>().color == gray)
             {
                 choice1.SetActive(true);
                 choiceText1.SetText(moveName1);
-                
-
             }
             if (attackButton2.GetComponent<Image>().color == gray)
             {
                 choice2.SetActive(true);
 
                 choiceText2.SetText(moveName2);
-
             }
             if (attackButton3.GetComponent<Image>().color == gray)
             {
                 choice3.SetActive(true);
 
                 choiceText3.SetText(moveName3);
-
             }
             if (attackButton4.GetComponent<Image>().color == gray)
             {
                 choice4.SetActive(true);
                 choiceText4.SetText(moveName4);
-
-
             }
         }
-
         else
         {
             combatText.SetText("You have no elixirs!!!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
         }
-
     }
 
     public void refill1()
@@ -835,17 +827,17 @@ public class BattleUI : MonoBehaviour
         if (moveType == GameManager.Type.FIRE && opponentType == GameManager.Type.WATER)
             return 1;
         else if (moveType == GameManager.Type.FIRE && opponentType == GameManager.Type.GRASS)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.FIRE && opponentType == GameManager.Type.FIRE)
             return 1;
         else if (moveType == GameManager.Type.WATER && opponentType == GameManager.Type.WATER)
             return 1;
         else if (moveType == GameManager.Type.WATER && opponentType == GameManager.Type.FIRE)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.WATER && opponentType == GameManager.Type.GRASS)
             return 1;
         else if (moveType == GameManager.Type.GRASS && opponentType == GameManager.Type.WATER)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.GRASS && opponentType == GameManager.Type.FIRE)
             return 1;
         else if (moveType == GameManager.Type.GRASS && opponentType == GameManager.Type.GRASS)
@@ -855,21 +847,21 @@ public class BattleUI : MonoBehaviour
         else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.ELECTRIC)
             return 1;
         else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.FIGHTING)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.FLYING && opponentType == GameManager.Type.GRASS)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.ELECTRIC)
             return 1;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.FIGHTING)
             return 1;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.FLYING)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.ELECTRIC && opponentType == GameManager.Type.WATER)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.FIGHTING && opponentType == GameManager.Type.FIGHTING)
             return 1;
         else if (moveType == GameManager.Type.FIGHTING && opponentType == GameManager.Type.ELECTRIC)
-            return 3;
+            return 4;
         else if (moveType == GameManager.Type.FIGHTING && opponentType == GameManager.Type.FLYING)
             return 1;
         else
@@ -1247,6 +1239,12 @@ public class BattleUI : MonoBehaviour
     }
     IEnumerator swapParty2()
     {
+        bool faint = false;
+        if (getCurrentPokemonHealth() == 0)
+        {
+            faint = true;
+        }
+
         if (partyButton2.GetComponent<Image>().color == gray)
         {
             combatText.SetText("This Pokemon has Fainted.");
@@ -1281,11 +1279,25 @@ public class BattleUI : MonoBehaviour
         moveDisplay();
         checkMoves();
 
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
+        if (faint == false)
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
+        else
+        {
+            faint = false;
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator swapParty3()
     {
+        bool faint = false;
+        if (partyButton1.GetComponent<Image>().color == gray)
+        {
+            faint = true;
+        }
+
         if (partyButton3.GetComponent<Image>().color == gray)
         {
             combatText.SetText("This Pokemon has Fainted.");
@@ -1320,7 +1332,15 @@ public class BattleUI : MonoBehaviour
         moveDisplay();
         checkMoves();
 
-        StartCoroutine(AIuseMove(random.Next(1, 5)));
+        if (faint == false)
+            StartCoroutine(AIuseMove(random.Next(1, 5)));
+        else
+        {
+            faint = false;
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator move1()
@@ -1428,16 +1448,16 @@ public class BattleUI : MonoBehaviour
         }
 
         // If critical, multiply the damage by 1.5
-        if (random.Next(1, 100) <= 10)
+        if (random.Next(1, 100) <= 5)
             isCritical = true;
 
         // Calculate damage
-        int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
+        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 10;
 
         // if xAttack is used then
         if (isDamageBoosted)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         // after damage calcuations is done set it back to false;
@@ -1445,7 +1465,7 @@ public class BattleUI : MonoBehaviour
 
         if (isCritical == true)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         lowerHealth(damage);
@@ -1462,10 +1482,16 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was not very effective.");
         else if (checkType(moveType, opponentPokemonType) == 2)
             combatText.SetText("It was effective.");
-        else if (checkType(moveType, opponentPokemonType) == 3)
+        else if (checkType(moveType, opponentPokemonType) == 4)
             combatText.SetText("It was super effective!!");
 
         yield return new WaitForSeconds(2);
+        if (currentOpponentHealth <= 0)
+        {
+            StartCoroutine(AIfaint(AIcounter));
+            yield break;
+        }
+
         combatText.SetText("");
         moveDisplay();
         checkMoves();
@@ -1473,13 +1499,11 @@ public class BattleUI : MonoBehaviour
         // if shield is activated then message will be blocked
         if (isShieldActivated)
         {
-            combatText.SetText("The shield blocked the move");
-            yield return new WaitForSeconds(2);
-            combatText.SetText("");
             isShieldActivated = false;
             battleManager.GetComponent<BattleManager>().shieldDeactivated();
-
+            combatText.SetText("The shield blocked the opponent's attack!");
             yield return new WaitForSeconds(2);
+            
             combatText.SetText("Your turn.");
             yield return new WaitForSeconds(1);
             combatText.SetText("");
@@ -1599,21 +1623,21 @@ public class BattleUI : MonoBehaviour
         }
 
         // If critical, multiply the damage by 1.5
-        if (random.Next(1, 100) <= 10)
+        if (random.Next(1, 100) <= 5)
             isCritical = true;
 
         // Calculate damage
-        int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
+        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 20;
 
         if (isCritical == true)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         // if xAttack is used then
         if (isDamageBoosted)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         // after damage calcuations is done set it back to false;
@@ -1633,22 +1657,28 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was not very effective.");
         else if (checkType(moveType, opponentPokemonType) == 2)
             combatText.SetText("It was effective.");
-        else if (checkType(moveType, opponentPokemonType) == 3)
+        else if (checkType(moveType, opponentPokemonType) == 4)
             combatText.SetText("It was super effective!!");
 
         yield return new WaitForSeconds(2);
+        if (currentOpponentHealth <= 0)
+        {
+            StartCoroutine(AIfaint(AIcounter));
+            yield break;
+        }
+
         combatText.SetText("");
         moveDisplay();
         checkMoves();
+
+        // if shield is activated then message will be blocked
         if (isShieldActivated)
         {
-            combatText.SetText("The shield blocked the move");
-            yield return new WaitForSeconds(2);
-            combatText.SetText("");
             isShieldActivated = false;
             battleManager.GetComponent<BattleManager>().shieldDeactivated();
-
+            combatText.SetText("The shield blocked the opponent's attack!");
             yield return new WaitForSeconds(2);
+
             combatText.SetText("Your turn.");
             yield return new WaitForSeconds(1);
             combatText.SetText("");
@@ -1661,7 +1691,6 @@ public class BattleUI : MonoBehaviour
         {
             StartCoroutine(AIuseMove(random.Next(1, 5)));
         }
-      
     }
 
     IEnumerator move3()
@@ -1770,16 +1799,16 @@ public class BattleUI : MonoBehaviour
         }
 
         // If critical, multiply the damage by 1.5
-        if (random.Next(1, 100) <= 10)
+        if (random.Next(1, 100) <= 5)
             isCritical = true;
 
         // Calculate damage
-        int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
+        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 20;
 
         // if xAttack is used then
         if (isDamageBoosted)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         // after damage calcuations is done set it back to false;
@@ -1787,7 +1816,7 @@ public class BattleUI : MonoBehaviour
 
         if (isCritical == true)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         lowerHealth(damage);
@@ -1804,23 +1833,28 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was not very effective.");
         else if (checkType(moveType, opponentPokemonType) == 2)
             combatText.SetText("It was effective.");
-        else if (checkType(moveType, opponentPokemonType) == 3)
+        else if (checkType(moveType, opponentPokemonType) == 4)
             combatText.SetText("It was super effective!!");
 
         yield return new WaitForSeconds(2);
+        if (currentOpponentHealth <= 0)
+        {
+            StartCoroutine(AIfaint(AIcounter));
+            yield break;
+        }
+
         combatText.SetText("");
         moveDisplay();
         checkMoves();
 
+        // if shield is activated then message will be blocked
         if (isShieldActivated)
         {
-            combatText.SetText("The shield blocked the move");
-            yield return new WaitForSeconds(2);
-            combatText.SetText("");
             isShieldActivated = false;
             battleManager.GetComponent<BattleManager>().shieldDeactivated();
-
+            combatText.SetText("The shield blocked the opponent's attack!");
             yield return new WaitForSeconds(2);
+
             combatText.SetText("Your turn.");
             yield return new WaitForSeconds(1);
             combatText.SetText("");
@@ -1941,16 +1975,16 @@ public class BattleUI : MonoBehaviour
         }
 
         // If critical, multiply the damage by 1.5
-        if (random.Next(1, 100) <= 10)
+        if (random.Next(1, 100) <= 5)
             isCritical = true;
 
         // Calculate damage
-        int damage = ((movePower - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2;
+        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 20;
 
         // if xAttack is used then
         if (isDamageBoosted)
         {
-            damage *= 3/2;
+            damage *= 2;
         }
 
         // after damage calcuations is done set it back to false;
@@ -1958,7 +1992,7 @@ public class BattleUI : MonoBehaviour
 
         if (isCritical == true)
         {
-            damage *= 3 / 2;
+            damage *= 2;
         }
 
         lowerHealth(damage);
@@ -1975,23 +2009,28 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was not very effective.");
         else if (checkType(moveType, opponentPokemonType) == 2)
             combatText.SetText("It was effective.");
-        else if (checkType(moveType, opponentPokemonType) == 3)
+        else if (checkType(moveType, opponentPokemonType) == 4)
             combatText.SetText("It was super effective!!");
 
         yield return new WaitForSeconds(2);
+        if (currentOpponentHealth <= 0)
+        {
+            StartCoroutine(AIfaint(AIcounter));
+            yield break;
+        }
+
         combatText.SetText("Your turn");
         moveDisplay();
         checkMoves();
 
+        // if shield is activated then message will be blocked
         if (isShieldActivated)
         {
-            combatText.SetText("The shield blocked the move");
-            yield return new WaitForSeconds(2);
-            combatText.SetText("");
             isShieldActivated = false;
             battleManager.GetComponent<BattleManager>().shieldDeactivated();
-
+            combatText.SetText("The shield blocked the opponent's attack!");
             yield return new WaitForSeconds(2);
+
             combatText.SetText("Your turn.");
             yield return new WaitForSeconds(1);
             combatText.SetText("");
@@ -2017,14 +2056,13 @@ public class BattleUI : MonoBehaviour
 
     IEnumerator AIfaint(int c)
     {
-        yield return new WaitForSeconds(2);
         combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + " has fainted.");
         yield return new WaitForSeconds(2);
 
         if (c == 1)
         {
             combatText.SetText("Next up...");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
             string temp;
 
@@ -2036,13 +2074,11 @@ public class BattleUI : MonoBehaviour
             opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
 
             combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + "!!");
-            yield return new WaitForSeconds(1);
-            combatText.SetText("");
         }
         else if (c == 2)
         {
             combatText.SetText("Next up...");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
             string temp;
 
@@ -2054,8 +2090,6 @@ public class BattleUI : MonoBehaviour
             opponentPokemonName.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0]);
 
             combatText.SetText(go.GetComponent<SelectPokemon>().opponentTeam[0] + "!!");
-            yield return new WaitForSeconds(1);
-            combatText.SetText("");
         }
         else
         {
@@ -2063,6 +2097,12 @@ public class BattleUI : MonoBehaviour
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene("Victory");
         }
+
+        opponentHealthBar.setHealth(getOpponentPokemonHealth());
+
+        yield return new WaitForSeconds(2);
+        combatText.SetText("");
+
         attackButtonMain.gameObject.SetActive(true);
         itemButtonMain.gameObject.SetActive(true);
         partyButtonMain.gameObject.SetActive(true);
@@ -2280,6 +2320,9 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It missed!");
             yield return new WaitForSeconds(2);
             combatText.SetText("");
+            attackButtonMain.gameObject.SetActive(true);
+            itemButtonMain.gameObject.SetActive(true);
+            partyButtonMain.gameObject.SetActive(true);
             yield break;
         }
 
@@ -2288,10 +2331,10 @@ public class BattleUI : MonoBehaviour
             isCritical = true;
 
         // Calculate damage
-        int damage = ((movePower - playerDefense) * checkType(moveType, playerPokemonType)) / 2;
+        int damage = (((movePower + 10 - playerDefense) * checkType(moveType, playerPokemonType)) / 2) + 30;
 
         if (isCritical == true)
-            damage *= 3 / 2;
+            damage *= 2;
 
         AIlowerHealth(damage);
 
@@ -2307,14 +2350,18 @@ public class BattleUI : MonoBehaviour
             combatText.SetText("It was not very effective.");
         else if (checkType(moveType, playerPokemonType) == 2)
             combatText.SetText("It was effective.");
-        else if (checkType(moveType, playerPokemonType) == 3)
+        else if (checkType(moveType, playerPokemonType) == 4)
             combatText.SetText("It was super effective!!");
 
-        if (partyButton1.GetComponent<Image>().color == gray)
+        yield return new WaitForSeconds(2);
+        if (getCurrentPokemonHealth() == 0)
         {
+            combatText.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[0] + " fainted.");
+            yield return new WaitForSeconds(2);
+
             if (partyButton2.GetComponent<Image>().color == green)
             {
-                swapPokemon2();
+                StartCoroutine(swapParty2());
 
                 attackButtonMain.gameObject.SetActive(true);
                 itemButtonMain.gameObject.SetActive(true);
@@ -2324,7 +2371,7 @@ public class BattleUI : MonoBehaviour
             }
             else if (partyButton3.GetComponent<Image>().color == green)
             {
-                swapPokemon3();
+                StartCoroutine(swapParty3());
 
                 attackButtonMain.gameObject.SetActive(true);
                 itemButtonMain.gameObject.SetActive(true);
@@ -2342,7 +2389,6 @@ public class BattleUI : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2);
         combatText.SetText("Your turn.");
         yield return new WaitForSeconds(1);
         combatText.SetText("");
@@ -2386,9 +2432,8 @@ public class BattleUI : MonoBehaviour
         }
         else
         {
-            playerHealthBar.setHealth(currentPlayerHealth - damage);
             currentPlayerHealth -= damage;
-            setCurrentPokemonHealth(currentPlayerHealth - damage);
+            playerHealthBar.setHealth(currentPlayerHealth);
         }
     }
 

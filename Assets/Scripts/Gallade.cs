@@ -5,26 +5,26 @@ using UnityEngine;
 public class Gallade : MonoBehaviour
 {
     int maxHealth;
-    int health;
+    public int health;
     int attack;
     int defense;
     GameManager.Type type = GameManager.Type.FIGHTING;
 
     string move1Name = "Brick Break";
     int move1Uses = 5;
-    int move1Power = 75;
+    int move1Power = 80;
     int move1Accuracy = 100;
     GameManager.Type move1Type = GameManager.Type.FIGHTING;
 
     string move2Name = "Rock Smash";
     int move2Uses = 20;
-    int move2Power = 40;
+    int move2Power = 60;
     int move2Accuracy = 100;
     GameManager.Type move2Type = GameManager.Type.FIGHTING;
 
     string move3Name = "False Swipe";
     int move3Uses = 20;
-    int move3Power = 40;
+    int move3Power = 60;
     int move3Accuracy = 100;
     GameManager.Type move3Type = GameManager.Type.NORMAL;
 
@@ -41,8 +41,8 @@ public class Gallade : MonoBehaviour
     {
         maxHealth = 1000;
         health = 1000;
-        attack = 100;
-        defense = 100;
+        attack = 140;
+        defense = 80;
     }
 
     public int getMaxHealth()

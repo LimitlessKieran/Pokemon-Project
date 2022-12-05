@@ -5,7 +5,7 @@ using UnityEngine;
 public class Aerodactyl : MonoBehaviour
 {
     int maxHealth;
-    int health;
+    public int health;
     int attack;
     int defense;
     GameManager.Type type = GameManager.Type.FLYING;
@@ -18,19 +18,19 @@ public class Aerodactyl : MonoBehaviour
 
     string move2Name = "Pursuit";
     int move2Uses = 20;
-    int move2Power = 40;
+    int move2Power = 60;
     int move2Accuracy = 100;
     GameManager.Type move2Type = GameManager.Type.FIGHTING;
 
     string move3Name = "Rock Tomb";
     int move3Uses = 20;
     int move3Power = 60;
-    int move3Accuracy = 95;
+    int move3Accuracy = 90;
     GameManager.Type move3Type = GameManager.Type.NORMAL;
 
     string move4Name = "Brave Bird";
     int move4Uses = 1;
-    int move4Power = 120;
+    int move4Power = 150;
     int move4Accuracy = 100;
     GameManager.Type move4Type = GameManager.Type.FLYING;
 
@@ -41,8 +41,8 @@ public class Aerodactyl : MonoBehaviour
     {
         maxHealth = 1000;
         health = 1000;
-        attack = 100;
-        defense = 100;
+        attack = 80;
+        defense = 140;
     }
 
     public int getMaxHealth()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pikachu : MonoBehaviour
 {
     int maxHealth;
-    int health;
+    public int health;
     int attack;
     int defense;
     GameManager.Type type = GameManager.Type.ELECTRIC;
@@ -24,7 +24,7 @@ public class Pikachu : MonoBehaviour
 
     string move3Name = "Quick Attack";
     int move3Uses = 20;
-    int move3Power = 40;
+    int move3Power = 60;
     int move3Accuracy = 100;
     GameManager.Type move3Type = GameManager.Type.NORMAL;
 
