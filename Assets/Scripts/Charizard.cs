@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Charizard : MonoBehaviour
 {
+    int maxHealth;
     int health;
     int attack;
     int defense;
@@ -30,17 +31,23 @@ public class Charizard : MonoBehaviour
     string move4Name = "Fire Blast";
     int move4Uses = 2;
     int move4Power = 120;
-    int move4Accuracy = 85;    
+    int move4Accuracy = 85;
     GameManager.Type move4Type = GameManager.Type.FIRE;
-    
+
     System.Random random = new System.Random();
 
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = 1000;
         health = 1000;
         attack = 100;
         defense = 100;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 
     public int getHealth()
