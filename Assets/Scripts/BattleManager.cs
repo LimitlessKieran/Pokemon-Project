@@ -118,6 +118,9 @@ public class BattleManager : MonoBehaviour
   
 
 
+<<<<<<< HEAD
+>>>>>>> parent of 9d1b007 (Tweaks)
+=======
 >>>>>>> parent of 9d1b007 (Tweaks)
     }
 
