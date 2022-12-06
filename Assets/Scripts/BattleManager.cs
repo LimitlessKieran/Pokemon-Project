@@ -113,6 +113,12 @@ public class BattleManager : MonoBehaviour
         {
             shield.transform.position = posShieldNight;
         }
+<<<<<<< HEAD
+=======
+  
+
+
+>>>>>>> parent of 9d1b007 (Tweaks)
     }
 
     public void shieldDeactivated()

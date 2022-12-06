@@ -56,6 +56,7 @@ public class SelectPokemon : MonoBehaviour
                 errortxt.SetActive(false);
                 seconds = 0;
             }
+
         }
     }
 
@@ -146,6 +147,7 @@ public class SelectPokemon : MonoBehaviour
     {
         swapPlaces("Gallade", g_Sprite);
         lockbtn.SetActive(true);
+
     }
 
     public void onSelect()
@@ -182,7 +184,9 @@ public class SelectPokemon : MonoBehaviour
                 battlebtn.SetActive(true);
                 lockbtn.SetActive(false);
             }
+
         }
+
         lockbtn.SetActive(false);
         unlockbtn.SetActive(true);
     }

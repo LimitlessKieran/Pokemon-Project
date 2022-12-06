@@ -46,6 +46,7 @@ public class BattleUI : MonoBehaviour
     TMP_Text choiceText3;
     TMP_Text choiceText4;
 
+
     TMP_Text attackButtonText1;
     TMP_Text attackButtonText2;
     TMP_Text attackButtonText3;
