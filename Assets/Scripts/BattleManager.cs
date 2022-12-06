@@ -8,6 +8,7 @@ public class BattleManager : MonoBehaviour
     public GameObject go;
     public GameObject myPokemon , opponentPokemon, shield;   
 
+    // -73.81 1.479887 -161.6
     Vector3 yourTeamForest = new Vector3(42.59f, .009f, 44.98f); //6868628
     Vector3 oppTeamForest = new Vector3(25.4567f, 0.15f, 33.15f);
     Vector3 away = new Vector3(25.4567f, -20.0f, 33.15f);
@@ -16,11 +17,12 @@ public class BattleManager : MonoBehaviour
     Vector3 pivot = new Vector3(34f, 0f, 38f);
     Vector3 pivotNight = new Vector3(-5.22f, 0f, -28.03f);
 
-    Vector3 yourTeamNight = new Vector3(-38.8f, 0f, -142.6f); //6868628
-    Vector3 oppTeamNight = new Vector3(-36f, 0f, 9.8f);
+    Vector3 yourTeamNight = new Vector3(-3f, 0f, -80f); //6868628
+    Vector3 oppTeamNight = new Vector3(-3f, 0f, 19);
 
     Vector3 posShieldForest = new Vector3(39.67f, 2.32f, 44.78f);
 
+    Vector3 posShieldNight = new Vector3(-3f, 8f, -55f);
     public static List<string> battleTeam = new List<string>();
 
     public static List<int> Bag = new List<int>();
@@ -58,6 +60,7 @@ public class BattleManager : MonoBehaviour
                 opponentPokemon = GameObject.Find(go.GetComponent<SelectPokemon>().opponentTeam[0]);
                 opponentPokemon.transform.position = oppTeamNight;
                 opponentPokemon.transform.LookAt(pivotNight);
+                print("im at Night");
             }
         }       
     }
@@ -102,10 +105,19 @@ public class BattleManager : MonoBehaviour
     // function for placing the shield infront of your pokemon 
     public void shieldActivated()
     {
-        shield.transform.position = posShieldForest;
-   
+        if (stageSetting.GetComponent<GameManager>().isStageForest)
+        {
+            shield.transform.position = posShieldForest;
+        }
+        else
+        {
+            shield.transform.position = posShieldNight;
+        }
+  
+
 
     }
+
     public void shieldDeactivated()
     {
         shield.transform.position = away;
