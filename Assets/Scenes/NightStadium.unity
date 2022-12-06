@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009854072, g: 0.015714878, b: 0.013216707, a: 1}
+  m_IndirectSpecularColor: {r: 0.009839468, g: 0.01574407, b: 0.013197743, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,7 +398,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 389a7d418690a472796b26abd0a4ce07, type: 3}
@@ -466,7 +465,6 @@ PrefabInstance:
       value: StadiumFloor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 389a7d418690a472796b26abd0a4ce07, type: 3}
 --- !u!1 &50176772
 GameObject:
@@ -608,7 +606,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 218f9a7d16e0f4f98b5733e8d677a40f, type: 3}
@@ -676,7 +673,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 218f9a7d16e0f4f98b5733e8d677a40f, type: 3}
 --- !u!1 &57650014 stripped
 GameObject:
@@ -1001,7 +997,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8773506509589169082, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
@@ -1069,7 +1064,6 @@ PrefabInstance:
       value: -0.643
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 27379caa2e31b40ea9bb7fd0d5275593, type: 3}
 --- !u!1 &124246765 stripped
 GameObject:
@@ -2072,7 +2066,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3b11937adf453e74196542326a797348, type: 3}
@@ -2136,7 +2129,6 @@ PrefabInstance:
       value: Sceptile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b11937adf453e74196542326a797348, type: 3}
 --- !u!1 &365784393 stripped
 GameObject:
@@ -2946,7 +2938,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1a38963c9920e41f38390bdb42fc13f5, type: 3}
@@ -3010,7 +3001,6 @@ PrefabInstance:
       value: Gallade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a38963c9920e41f38390bdb42fc13f5, type: 3}
 --- !u!1 &808571918 stripped
 GameObject:
@@ -3696,6 +3686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -3873,7 +3864,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2cbfdbe420d7e4b0d96a3b54e83a4655, type: 3}
@@ -3937,7 +3927,6 @@ PrefabInstance:
       value: Pikachu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cbfdbe420d7e4b0d96a3b54e83a4655, type: 3}
 --- !u!1 &1036029579 stripped
 GameObject:
@@ -4714,8 +4703,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243778182}
-  m_LocalRotation: {x: -0.11095225, y: 0.5502295, z: -0.074082136, w: -0.824287}
-  m_LocalPosition: {x: 67.44267, y: 13.373104, z: -53.609512}
+  m_LocalRotation: {x: -0.1981645, y: 0.05492479, z: -0.011261562, w: -0.97856396}
+  m_LocalPosition: {x: 5.6271915, y: 16.434841, z: -90.13925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5204,7 +5193,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0a657ee857e514f4a856e707aba9044c, type: 3}
@@ -5268,7 +5256,6 @@ PrefabInstance:
       value: Stadium
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a657ee857e514f4a856e707aba9044c, type: 3}
 --- !u!1 &1466065297
 GameObject:
@@ -6435,7 +6422,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -7671,7 +7657,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
@@ -7739,7 +7724,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe705d972e2b54e39bcfb42637b5ebf9, type: 3}
 --- !u!1 &1957287573 stripped
 GameObject:
@@ -8599,7 +8583,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fb345885d988bdc47975a0a9bfcb84e9, type: 3}
@@ -8663,7 +8646,6 @@ PrefabInstance:
       value: Feraligatr
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fb345885d988bdc47975a0a9bfcb84e9, type: 3}
 --- !u!1 &2109101818 stripped
 GameObject:
