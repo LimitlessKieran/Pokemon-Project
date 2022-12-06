@@ -17,8 +17,13 @@ public class BattleManager : MonoBehaviour
     Vector3 pivot = new Vector3(34f, 0f, 38f);
     Vector3 pivotNight = new Vector3(-5.22f, 0f, -28.03f);
 
+<<<<<<< Updated upstream
     Vector3 yourTeamNight = new Vector3(-3f, 0f, -80f); //6868628
     Vector3 oppTeamNight = new Vector3(-3f, 0f, 19);
+=======
+    Vector3 yourTeamNight = new Vector3(-27f, 1.5f, -75f); //6868628
+    Vector3 oppTeamNight = new Vector3(-51f, 1.5f, -59f);
+>>>>>>> Stashed changes
 
     Vector3 posShieldForest = new Vector3(39.67f, 2.32f, 44.78f);
 
@@ -105,6 +110,7 @@ public class BattleManager : MonoBehaviour
     // function for placing the shield infront of your pokemon 
     public void shieldActivated()
     {
+<<<<<<< Updated upstream
         if (stageSetting.GetComponent<GameManager>().isStageForest)
         {
             shield.transform.position = posShieldForest;
@@ -116,11 +122,13 @@ public class BattleManager : MonoBehaviour
   
 
 
+=======
+        shield.transform.position = posShieldForest;
+>>>>>>> Stashed changes
     }
 
     public void shieldDeactivated()
     {
         shield.transform.position = away;
-
     }
 }
