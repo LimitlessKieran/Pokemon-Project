@@ -332,21 +332,26 @@ public class BattleUI : MonoBehaviour
 
     public void useMove1()
     {
+        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
         StartCoroutine(move1());
+
     }
 
     public void useMove2()
     {
+        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
         StartCoroutine(move2());
     }
 
     public void useMove3()
     {
+        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
         StartCoroutine(move3());
     }
 
     public void useMove4()
     {
+        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
         StartCoroutine(move4());
     }
 
@@ -428,6 +433,7 @@ public class BattleUI : MonoBehaviour
             {
                 // The potion is used
                 combatText.SetText("A Potion was used!");
+                battleManager.GetComponent<BattleManager>().healthActivated();
                 yield return new WaitForSeconds(2);
                 potionCount--;
                 ItemDisplay();
@@ -441,6 +447,8 @@ public class BattleUI : MonoBehaviour
                 playerHealthBar.setHealth(currentPlayerHealth);
 
                 combatText.SetText(go.GetComponent<SelectPokemon>().PokemonTeam[0] + " HP was restored!");
+                battleManager.GetComponent<BattleManager>().healthDeactivated();
+
                 yield return new WaitForSeconds(2);
                 combatText.SetText("");
             }
@@ -474,6 +482,7 @@ public class BattleUI : MonoBehaviour
             {
                 combatText.SetText("Your next attack's damage has been increased!!");
                 yield return new WaitForSeconds(2);
+                battleManager.GetComponent<BattleManager>().xAttackActivated();
                 xAttackCount--;
                 ItemDisplay();
                 combatText.SetText("");
@@ -568,32 +577,51 @@ public class BattleUI : MonoBehaviour
 
         if (elixirCount > 0)
         {
-            elixirCount--;
-            ItemDisplay();
-            combatText.SetText("Which move would you like to restore?");
+            
+            if(attackButton1.GetComponent<Image>().color == blue && attackButton2.GetComponent<Image>().color == blue && attackButton3.GetComponent<Image>().color == blue
+                && attackButton4.GetComponent<Image>().color == blue)
+            {
+                combatText.SetText("No move has ran out of uses!!!!");
+            }
+            else
+            {
+                elixirCount--;
+                ItemDisplay();
+                battleManager.GetComponent<BattleManager>().elixirActivated();
 
-            if (attackButton1.GetComponent<Image>().color == gray)
-            {
-                choice1.SetActive(true);
-                choiceText1.SetText(moveName1);
-            }
-            if (attackButton2.GetComponent<Image>().color == gray)
-            {
-                choice2.SetActive(true);
+                if (attackButton1.GetComponent<Image>().color == gray)
+                {
+                    combatText.SetText("Which move would you like to restore?");
+                    choice1.SetActive(true);
+                    choiceText1.SetText(moveName1);
 
-                choiceText2.SetText(moveName2);
-            }
-            if (attackButton3.GetComponent<Image>().color == gray)
-            {
-                choice3.SetActive(true);
 
-                choiceText3.SetText(moveName3);
+                }
+                if (attackButton2.GetComponent<Image>().color == gray)
+                {
+                    combatText.SetText("Which move would you like to restore?");
+                    choice2.SetActive(true);
+                    choiceText2.SetText(moveName2);
+
+
+                }
+                if (attackButton3.GetComponent<Image>().color == gray)
+                {
+                    combatText.SetText("Which move would you like to restore?");
+                    choice3.SetActive(true);
+                    choiceText3.SetText(moveName3);
+
+
+                }
+                if (attackButton4.GetComponent<Image>().color == gray)
+                {
+                    combatText.SetText("Which move would you like to restore?");
+                    choice4.SetActive(true);
+                    choiceText4.SetText(moveName4);
+
+                }
             }
-            if (attackButton4.GetComponent<Image>().color == gray)
-            {
-                choice4.SetActive(true);
-                choiceText4.SetText(moveName4);
-            }
+            
         }
         else
         {
@@ -610,23 +638,30 @@ public class BattleUI : MonoBehaviour
         choice3.SetActive(false);
         choice4.SetActive(false);
 
+
         if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
         {
             currentPlayerPokemon.GetComponent<Charizard>().reset1Uses();
             attackButton1.GetComponent<Image>().color = blue;
             moveDisplay();
+            combatText.SetText("");
+
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
         {
             currentPlayerPokemon.GetComponent<Gallade>().reset1Uses();
             attackButton1.GetComponent<Image>().color = blue;
             moveDisplay();
+            combatText.SetText("");
+
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Pikachu")
         {
             currentPlayerPokemon.GetComponent<Pikachu>().reset1Uses();
             attackButton1.GetComponent<Image>().color = blue;
             moveDisplay();
+            combatText.SetText("");
+
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Feraligatr")
         {
@@ -634,12 +669,16 @@ public class BattleUI : MonoBehaviour
             currentPlayerPokemon.GetComponent<Feraligatr>().reset1Uses();
             attackButton1.GetComponent<Image>().color = blue;
             moveDisplay();
+            combatText.SetText("");
+
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Sceptile")
         {
             currentPlayerPokemon.GetComponent<Sceptile>().reset1Uses();
             attackButton1.GetComponent<Image>().color = blue;
             moveDisplay();
+            combatText.SetText("");
+
 
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Aerodactyl")
@@ -647,8 +686,10 @@ public class BattleUI : MonoBehaviour
             currentPlayerPokemon.GetComponent<Aerodactyl>().reset1Uses();
             attackButton1.GetComponent<Image>().color = blue;
             moveDisplay();
-        }
+            combatText.SetText("");
 
+        }
+        battleManager.GetComponent<BattleManager>().elixirActivated();
     }
 
     public void refill2()
@@ -658,16 +699,21 @@ public class BattleUI : MonoBehaviour
         choice3.SetActive(false);
         choice4.SetActive(false);
 
+
         if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
         {
             currentPlayerPokemon.GetComponent<Charizard>().reset2Uses();
             attackButton2.GetComponent<Image>().color = blue;
+            combatText.SetText("");
+
             moveDisplay();
         }
         else if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Gallade")
         {
             currentPlayerPokemon.GetComponent<Gallade>().reset2Uses();
             attackButton2.GetComponent<Image>().color = blue;
+            combatText.SetText("");
+
 
             moveDisplay();
         }
@@ -675,6 +721,8 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Pikachu>().reset2Uses();
             attackButton2.GetComponent<Image>().color = blue;
+            combatText.SetText("");
+
 
             moveDisplay();
         }
@@ -683,6 +731,8 @@ public class BattleUI : MonoBehaviour
 
             currentPlayerPokemon.GetComponent<Feraligatr>().reset2Uses();
             attackButton2.GetComponent<Image>().color = blue;
+            combatText.SetText("");
+
 
             moveDisplay();
         }
@@ -690,6 +740,8 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Sceptile>().reset2Uses();
             attackButton2.GetComponent<Image>().color = blue;
+            combatText.SetText("");
+
 
             moveDisplay();
 
@@ -699,9 +751,11 @@ public class BattleUI : MonoBehaviour
             currentPlayerPokemon.GetComponent<Aerodactyl>().reset2Uses();
             attackButton2.GetComponent<Image>().color = blue;
 
+            combatText.SetText("");
+
             moveDisplay();
         }
-
+        battleManager.GetComponent<BattleManager>().elixirActivated();
     }
 
     public void refill3()
@@ -711,10 +765,12 @@ public class BattleUI : MonoBehaviour
         choice3.SetActive(false);
         choice4.SetActive(false);
 
+
         if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
         {
             currentPlayerPokemon.GetComponent<Charizard>().reset3Uses();
             attackButton3.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -722,6 +778,7 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Gallade>().reset3Uses();
             attackButton3.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -729,6 +786,7 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Pikachu>().reset3Uses();
             attackButton3.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -737,6 +795,7 @@ public class BattleUI : MonoBehaviour
 
             currentPlayerPokemon.GetComponent<Feraligatr>().reset3Uses();
             attackButton3.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -744,6 +803,7 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Sceptile>().reset3Uses();
             attackButton3.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
 
@@ -752,10 +812,11 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Aerodactyl>().reset3Uses();
             attackButton3.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
-
+        battleManager.GetComponent<BattleManager>().elixirActivated();
     }
 
     public void refill4()
@@ -765,10 +826,13 @@ public class BattleUI : MonoBehaviour
         choice3.SetActive(false);
         choice4.SetActive(false);
 
+       
+
         if (go.GetComponent<SelectPokemon>().PokemonTeam[0] == "Charizard")
         {
             currentPlayerPokemon.GetComponent<Charizard>().reset4Uses();
             attackButton4.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -776,6 +840,7 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Gallade>().reset4Uses();
             attackButton4.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -783,6 +848,7 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Pikachu>().reset4Uses();
             attackButton4.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -791,6 +857,7 @@ public class BattleUI : MonoBehaviour
 
             currentPlayerPokemon.GetComponent<Feraligatr>().reset4Uses();
             attackButton4.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
@@ -798,6 +865,7 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Sceptile>().reset4Uses();
             attackButton4.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
 
@@ -806,10 +874,12 @@ public class BattleUI : MonoBehaviour
         {
             currentPlayerPokemon.GetComponent<Aerodactyl>().reset4Uses();
             attackButton4.GetComponent<Image>().color = blue;
+            combatText.SetText("");
 
             moveDisplay();
         }
 
+        battleManager.GetComponent<BattleManager>().elixirDeactivated();
     }
 
     public void swapPokemon2()
@@ -1458,11 +1528,14 @@ public class BattleUI : MonoBehaviour
         if (isDamageBoosted)
         {
             damage *= 2;
+            // after damage calcuations is done set it back to false;
+            isDamageBoosted = false;
+
+            battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+
         }
 
-        // after damage calcuations is done set it back to false;
-        isDamageBoosted = false;
-
+        
         if (isCritical == true)
         {
             damage *= 2;
@@ -1638,10 +1711,13 @@ public class BattleUI : MonoBehaviour
         if (isDamageBoosted)
         {
             damage *= 2;
+            // after damage calcuations is done set it back to false;
+            isDamageBoosted = false;
+            battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+
         }
 
-        // after damage calcuations is done set it back to false;
-        isDamageBoosted = false;
+        
 
         lowerHealth(damage);
 
@@ -1809,10 +1885,13 @@ public class BattleUI : MonoBehaviour
         if (isDamageBoosted)
         {
             damage *= 2;
+            // after damage calcuations is done set it back to false;
+            isDamageBoosted = false;
+            battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+
         }
 
-        // after damage calcuations is done set it back to false;
-        isDamageBoosted = false;
+
 
         if (isCritical == true)
         {
@@ -1985,10 +2064,13 @@ public class BattleUI : MonoBehaviour
         if (isDamageBoosted)
         {
             damage *= 2;
+            // after damage calcuations is done set it back to false;
+            isDamageBoosted = false;
+            battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+
+
         }
 
-        // after damage calcuations is done set it back to false;
-        isDamageBoosted = false;
 
         if (isCritical == true)
         {
