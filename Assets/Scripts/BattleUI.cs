@@ -201,6 +201,23 @@ public class BattleUI : MonoBehaviour
             partyButton3.GetComponent<Image>().color = green;
         else
             partyButton3.GetComponent<Image>().color = gray;
+
+        if(potionCount <= 0)
+        {
+            itemButton1.GetComponent<Image>().color = gray;
+        }
+        if (xAttackCount <= 0)
+        {
+            itemButton2.GetComponent<Image>().color = gray;
+        }
+        if (shieldCount <= 0)
+        {
+            itemButton3.GetComponent<Image>().color = gray;
+        }
+        if (elixirCount <= 0)
+        {
+            itemButton4.GetComponent<Image>().color = gray;
+        }
     }
 
     public void moveDisplay()
@@ -332,26 +349,26 @@ public class BattleUI : MonoBehaviour
 
     public void useMove1()
     {
-        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+      
         StartCoroutine(move1());
 
     }
 
     public void useMove2()
     {
-        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+        
         StartCoroutine(move2());
     }
 
     public void useMove3()
     {
-        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+        
         StartCoroutine(move3());
     }
 
     public void useMove4()
     {
-        battleManager.GetComponent<BattleManager>().xAttackDeactivated();
+       
         StartCoroutine(move4());
     }
 
