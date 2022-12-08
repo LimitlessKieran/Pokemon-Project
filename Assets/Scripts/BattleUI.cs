@@ -1539,7 +1539,7 @@ public class BattleUI : MonoBehaviour
             isCritical = true;
 
         // Calculate damage
-        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 10;
+        int damage = ((((movePower * 3) / 2 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 10;
 
         // if xAttack is used then
         if (isDamageBoosted)
@@ -1717,7 +1717,7 @@ public class BattleUI : MonoBehaviour
             isCritical = true;
 
         // Calculate damage
-        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 20;
+        int damage = ((((movePower * 3) / 2 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 10;
 
         if (isCritical == true)
         {
@@ -1896,7 +1896,7 @@ public class BattleUI : MonoBehaviour
             isCritical = true;
 
         // Calculate damage
-        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 20;
+        int damage = ((((movePower * 3) / 2 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 10;
 
         // if xAttack is used then
         if (isDamageBoosted)
@@ -2075,7 +2075,7 @@ public class BattleUI : MonoBehaviour
             isCritical = true;
 
         // Calculate damage
-        int damage = (((movePower + 20 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 20;
+        int damage = ((((movePower * 3) / 2 - opposingDefense) * checkType(moveType, opponentPokemonType)) / 2) + 10;
 
         // if xAttack is used then
         if (isDamageBoosted)
@@ -2430,7 +2430,7 @@ public class BattleUI : MonoBehaviour
             isCritical = true;
 
         // Calculate damage
-        int damage = (((movePower + 10 - playerDefense) * checkType(moveType, playerPokemonType)) / 2) + 30;
+        int damage = ((((movePower * 3) / 2 + 10 - playerDefense) * checkType(moveType, playerPokemonType)) / 2) + 30;
 
         if (isCritical == true)
             damage *= 2;
